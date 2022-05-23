@@ -5,9 +5,9 @@ public class carro {
 	private long kilometraje;
 	private int year,descuento;
 	private double precio;
-	
+	private gestionImagen img;
 	public carro(String marca, String modelo, String color, String placa, String tapiceria,
-			String cjCambios, long kilometraje,int year, int descuento,double precio) {
+			String cjCambios, long kilometraje,int year, int descuento,double precio, int width, int height) {
 		this.marca=marca;
 		this.modelo=modelo;
 		this.color=color;
@@ -18,6 +18,9 @@ public class carro {
 		this.year=year;
 		this.descuento=descuento;
 		this.precio=precio;
+		
+		//datos para las imagenes
+		img = new gestionImagen(width, height);
 	}
 	
 	public String getDatos() {
