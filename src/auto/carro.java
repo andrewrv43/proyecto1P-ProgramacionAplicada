@@ -21,7 +21,7 @@ public class carro {
 	}
 	
 	public String getDatos() {
-		return "";
+		return "probando 1 2 3";
 	}
 	
 
