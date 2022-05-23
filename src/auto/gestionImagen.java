@@ -7,6 +7,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.ArrayList;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -17,8 +18,6 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public class gestionImagen {
 	//private JFileChooser ventana = new JFileChooser("");
 	private FileNameExtensionFilter filtro = new FileNameExtensionFilter("JPG", "jpg");
-	private int contador = 1;
-	private int contadorArchivo = 1;
 	private ImageIcon image = new ImageIcon();
 	private Icon im;
 	private int width, height;
@@ -27,11 +26,11 @@ public class gestionImagen {
 		this.height = height;
 	}
 
-	public boolean guardarImagen(File ar) {
+	public boolean guardarImagen(File ar, int contadorArchivo) {
 		/*ventana.setFileFilter(filtro);
 		ventana.showOpenDialog(this);*/
 		File archivo = ar;
-
+		
 		//verificamos seleccion de archivo
 		if(archivo != null) {
 
@@ -61,11 +60,11 @@ public class gestionImagen {
 		}
 	}
 	
-	public Icon iniciar() {
-		image = new ImageIcon("Auto 1/img/" + contador +".jpg");
+	public Icon iniciar(int contador, String placa) {
+		image = new ImageIcon(placa + "/img/" + contador +".jpg");
 		return im = new ImageIcon(image.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH));
 	}
-	public Icon siguiente(int width, int height) {
+	public Icon siguiente(int contador, String placa) {
 		File directorio = new File("Auto 1/img");
 		File[] nimg = directorio.listFiles();
 		if(contador >= nimg.length){
@@ -73,10 +72,10 @@ public class gestionImagen {
 		}else {
 			contador ++;
 		}
-		image = new ImageIcon("Auto 1/img/" + contador +".jpg");
+		image = new ImageIcon(placa + "/img/" + contador +".jpg");
 		return im = new ImageIcon(image.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH));
 	}
-	public Icon anterior() {
+	public Icon anterior(int contador, String placa) {
 		File directorio = new File("Auto 1/img");
 		File[] nimg = directorio.listFiles();
 		if(contador <= 1){
@@ -84,7 +83,7 @@ public class gestionImagen {
 		}else {
 			contador --;
 		}
-		image = new ImageIcon("Auto 1/img/" + contador +".jpg");
+		image = new ImageIcon(placa + "/img/" + contador +".jpg");
 		return im = new ImageIcon(image.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH));
 	}
 }
