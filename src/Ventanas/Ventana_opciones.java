@@ -1,15 +1,19 @@
-package Proyect_SAJA;
+package Ventanas;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.border.MatteBorder;
+
+import java.awt.BorderLayout;
 import java.awt.Color;
 import javax.swing.JToggleButton;
 import javax.swing.JEditorPane;
 import java.awt.SystemColor;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Ventana_opciones extends JPanel {
 
@@ -45,6 +49,21 @@ public class Ventana_opciones extends JPanel {
 		panel.add(lblElijeUnaOpcin);
 		
 		JButton btnNewButton = new JButton("REGISTRAR");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ventana_registrar vt = new ventana_registrar();
+				vt.setSize(680, 420);
+				vt.setLocation(0, 0);
+				panel.setVisible(false);
+				panel.add(vt);
+				panel.repaint();
+				/*panel.removeAll();
+				panel.add(vt, BorderLayout.CENTER);
+				panel.revalidate();
+				panel.repaint();
+				vt.show();*/
+			}
+		});
 		btnNewButton.setFont(new Font("Century Gothic", Font.BOLD | Font.ITALIC, 20));
 		btnNewButton.setBounds(20, 185, 178, 39);
 		panel.add(btnNewButton);

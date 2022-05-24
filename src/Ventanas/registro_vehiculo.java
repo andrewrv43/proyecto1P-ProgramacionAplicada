@@ -1,4 +1,4 @@
-package Proyect_SAJA;
+package Ventanas;
 
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
