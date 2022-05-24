@@ -4,6 +4,7 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
 import javax.swing.border.MatteBorder;
 
 import java.awt.BorderLayout;
@@ -55,8 +56,12 @@ public class Ventana_opciones extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				ventana_registrar vt = new ventana_registrar();
 				JFrame a = new JFrame();
+				a.setBounds(50, 50, 650, 400);
 				a.add(vt);
+			
 				a.show();
+				
+				
 				
 			}
 		});
