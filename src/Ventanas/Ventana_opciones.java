@@ -10,6 +10,8 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import javax.swing.JToggleButton;
 import javax.swing.JEditorPane;
+import javax.swing.JFrame;
+
 import java.awt.SystemColor;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -52,16 +54,10 @@ public class Ventana_opciones extends JPanel {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ventana_registrar vt = new ventana_registrar();
-				vt.setSize(680, 420);
-				vt.setLocation(0, 0);
-				panel.setVisible(false);
-				panel.add(vt);
-				panel.repaint();
-				/*panel.removeAll();
-				panel.add(vt, BorderLayout.CENTER);
-				panel.revalidate();
-				panel.repaint();
-				vt.show();*/
+				JFrame a = new JFrame();
+				a.add(vt);
+				a.show();
+				
 			}
 		});
 		btnNewButton.setFont(new Font("Century Gothic", Font.BOLD | Font.ITALIC, 20));
@@ -69,6 +65,10 @@ public class Ventana_opciones extends JPanel {
 		panel.add(btnNewButton);
 		
 		JButton btnCatalogo = new JButton("CATALOGO");
+		btnCatalogo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnCatalogo.setFont(new Font("Century Gothic", Font.BOLD | Font.ITALIC, 20));
 		btnCatalogo.setBounds(20, 251, 178, 39);
 		panel.add(btnCatalogo);
