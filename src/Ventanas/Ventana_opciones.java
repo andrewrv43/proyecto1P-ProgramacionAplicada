@@ -4,6 +4,7 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.MatteBorder;
 
@@ -14,6 +15,8 @@ import javax.swing.JEditorPane;
 import javax.swing.JFrame;
 
 import java.awt.SystemColor;
+import java.awt.Window;
+
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -23,6 +26,9 @@ public class Ventana_opciones extends JPanel {
 	/**
 	 * Create the panel.
 	 */
+	private ventana_registrar vr;
+	private Ventana_opciones vo;
+	public JButton btnNewButton = new JButton("REGISTRAR");
 	public Ventana_opciones() {
 		setLayout(null);
 		
@@ -51,20 +57,21 @@ public class Ventana_opciones extends JPanel {
 		lblElijeUnaOpcin.setBounds(10, 147, 178, 28);
 		panel.add(lblElijeUnaOpcin);
 		
-		JButton btnNewButton = new JButton("REGISTRAR");
+		
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ventana_registrar vt = new ventana_registrar();
+				
+				vr = new ventana_registrar(vo);
 				JFrame a = new JFrame();
+				
 				a.setBounds(50, 50, 650, 400);
-				a.add(vt);
-			
-				a.show();
+				a.getContentPane().add(vr);
+				a.setVisible(true);
+				btnNewButton.setEnabled(false);
 				
-				
-				
-			}
+			}	
 		});
+		btnNewButton.setEnabled(true);
 		btnNewButton.setFont(new Font("Century Gothic", Font.BOLD | Font.ITALIC, 20));
 		btnNewButton.setBounds(20, 185, 178, 39);
 		panel.add(btnNewButton);
@@ -87,6 +94,7 @@ public class Ventana_opciones extends JPanel {
 		btnVender.setFont(new Font("Century Gothic", Font.BOLD | Font.ITALIC, 20));
 		btnVender.setBounds(20, 375, 178, 39);
 		panel.add(btnVender);
-
+		
+		vo=this;
 	}
 }

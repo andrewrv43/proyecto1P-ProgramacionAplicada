@@ -2,12 +2,14 @@ package Ventanas;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-public class ventanaPrincipal extends JFrame {
+public class ventanaPrincipal extends JFrame  {
 
 	private JPanel contentPane;
 
@@ -40,6 +42,7 @@ public class ventanaPrincipal extends JFrame {
 		
 		Ventana_opciones ventana_opciones = new Ventana_opciones();
 		contentPane.add(ventana_opciones, BorderLayout.CENTER);
+
 	}
 
 }

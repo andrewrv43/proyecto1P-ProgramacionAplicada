@@ -19,11 +19,15 @@ import java.awt.event.ActionEvent;
 public class ventana_registrar extends JPanel {
 	private JTextField in_usuario;
 	private JPasswordField in_password;
-
+	public boolean abierto=true;
 	/**
 	 * Create the panel.
 	 */
-	public ventana_registrar() {
+	public boolean getAbierto() {
+		return abierto;
+	}
+	public JButton btn_cancelar = new JButton("CANCELAR");
+	public ventana_registrar(Ventana_opciones vt) {
 		setLayout(null);
 
 		JPanel panel = new JPanel();
@@ -63,11 +67,14 @@ public class ventana_registrar extends JPanel {
 		lblPassword.setBounds(50, 155, 137, 34);
 		panel.add(lblPassword);
 
-		JButton btn_cancelar = new JButton("CANCELAR");
+		
 		btn_cancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Window w = SwingUtilities.getWindowAncestor(panel);
+				
 				w.setVisible(false);
+				panel.setVisible(false);
+				vt.btnNewButton.setEnabled(true);
 			}
 		});
 		btn_cancelar.setFont(new Font("Century Gothic", Font.PLAIN, 14));
