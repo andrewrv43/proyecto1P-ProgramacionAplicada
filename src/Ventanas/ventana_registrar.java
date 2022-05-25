@@ -96,7 +96,7 @@ public class ventana_registrar extends JPanel {
 		btn_ingresar.addActionListener(new ActionListener() {
 			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
-				registro_vehiculo v = new registro_vehiculo();
+				registro_vehiculo v = new registro_vehiculo(vt);
 
 				if(ingreso(in_usuario.getText(), in_password.getText())) {
 					JFrame a = new JFrame();

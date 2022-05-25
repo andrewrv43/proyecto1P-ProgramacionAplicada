@@ -32,7 +32,7 @@ public class Ventana_opciones extends JPanel {
 	private ventana_registrar vr;
 	private ventana_catalogo vc;
 	private Ventana_opciones vo;
-	private ArrayList<carro> listC = new ArrayList<carro>();
+	public ArrayList<carro> listC = new ArrayList<carro>();
 
 	public JButton btnNewButton = new JButton("REGISTRAR");
 	public Ventana_opciones() {
@@ -85,7 +85,7 @@ public class Ventana_opciones extends JPanel {
 		JButton btnCatalogo = new JButton("CATALOGO");
 		btnCatalogo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				vc = new ventana_catalogo(listC);
+				vc = new ventana_catalogo(vo);
 				JFrame a = new JFrame();
 				a.setBounds(50, 50, 800, 800);
 				a.getContentPane().add(vc);

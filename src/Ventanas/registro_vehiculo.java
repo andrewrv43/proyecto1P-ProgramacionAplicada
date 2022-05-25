@@ -61,7 +61,7 @@ public class registro_vehiculo extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public registro_vehiculo() {
+	public registro_vehiculo(Ventana_opciones vo) {
 		setLayout(null);
 
 		JPanel panel = new JPanel();
@@ -245,7 +245,7 @@ public class registro_vehiculo extends JPanel {
 								Double.parseDouble(in_precio.getText()),
 								496,
 								194);
-						a.add(c);
+						vo.listC.add(c);
 						String ruta ="src/catalogo";
 						File direct=new File(ruta);
 						if(direct.exists()) {

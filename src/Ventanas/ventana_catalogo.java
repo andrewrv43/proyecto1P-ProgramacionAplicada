@@ -26,13 +26,12 @@ import java.awt.event.ActionEvent;
 public class ventana_catalogo extends JPanel {
 	private JTextField in_abuscar;
 
-	private registro_vehiculo r = new registro_vehiculo();
-	private ArrayList<carro> lista;
+
 	/**
 	 * Create the panel.
 	 */
-	public ventana_catalogo(ArrayList<carro> lista) {
-		this.lista = lista;
+	public ventana_catalogo(Ventana_opciones vt) {
+
 		setLayout(null);
 		
 		JPanel panel = new JPanel();
@@ -138,7 +137,7 @@ public class ventana_catalogo extends JPanel {
 		btn_siguiente.setFont(new Font("Century Gothic", Font.BOLD, 30));
 		
 		System.out.println("aaa");
-		for (carro carro : lista) {
+		for (carro carro : vt.listC) {
 			System.out.print(carro.getCodigo());
 		}
 
