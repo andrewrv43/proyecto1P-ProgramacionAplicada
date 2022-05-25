@@ -81,12 +81,27 @@ public class registro_vehiculo extends JPanel {
 		panel.add(lblTipo);
 
 		JRadioButton btn_TNuevo = new JRadioButton("   NUEVO");
+		JRadioButton rdbtnUsado = new JRadioButton("  USADO");
+		rdbtnUsado.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(rdbtnUsado.isSelected()) {
+					btn_TNuevo.setSelected(false);
+				}
+			}
+		});
+		btn_TNuevo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(btn_TNuevo.isSelected()) {
+					rdbtnUsado.setSelected(false);
+				}
+			}
+		});
 		btn_TNuevo.setHorizontalAlignment(SwingConstants.LEFT);
 		btn_TNuevo.setFont(new Font("Century Gothic", Font.BOLD, 14));
 		btn_TNuevo.setBounds(156, 79, 103, 21);
 		panel.add(btn_TNuevo);
 
-		JRadioButton rdbtnUsado = new JRadioButton("  USADO");
+
 		rdbtnUsado.setHorizontalAlignment(SwingConstants.RIGHT);
 		rdbtnUsado.setFont(new Font("Century Gothic", Font.BOLD, 14));
 		rdbtnUsado.setBounds(301, 79, 103, 21);
@@ -239,8 +254,8 @@ public class registro_vehiculo extends JPanel {
 								in_modelo.getText(),
 								in_color.getText(),
 								in_placa.getText(),
-								"Tapiceria",
-								"Caja de cambios",
+								(String)comboBox.getSelectedItem(),
+								(String)comboBox_1.getSelectedItem(),
 								Long.parseLong(in_kilome.getText()),
 								Integer.parseInt(in_anio.getText()),
 								(Integer)(in_desc.getValue()),
@@ -327,7 +342,6 @@ public class registro_vehiculo extends JPanel {
 						c.setContadorArchivos(c.getContadorArchivos() + 1);
 					}
 				}
-				System.out.println("asda");
 			}
 			System.out.println("aca estoy");
 			System.out.println(directorio.getAbsolutePath());

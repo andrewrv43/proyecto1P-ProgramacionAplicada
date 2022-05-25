@@ -113,4 +113,13 @@ public class Ventana_opciones extends JPanel {
 	public void add(carro d) {
 		listC.add(d);
 	}
+	
+	//PENDIENTE
+	public void exp() {
+		String dat="";
+		for(carro a:listC) {
+			dat+=a.getCodigo()+"\n";
+		}
+		
+	}
 }
