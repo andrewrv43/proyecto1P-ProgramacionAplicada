@@ -1,0 +1,10 @@
+AUTO - - VU-341
+Estado:  poner estado
+Marca: ASDASD
+Modelo: ASDASD
+Año: 2021
+Kilometraje: 12312
+Precio: 12000
+Descuento: 40
+Color: AZUL
+Placa: PCN-3297

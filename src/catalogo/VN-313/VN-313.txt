@@ -1,0 +1,10 @@
+AUTO - - VN-313
+Estado:  poner estado
+Marca: ASDSAD
+Modelo: ASDASD
+Año: 2020
+Kilometraje: 1231231
+Precio: 321312
+Descuento: 10
+Color: AZUL
+Placa: PCN-3297

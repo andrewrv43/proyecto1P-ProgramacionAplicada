@@ -1,0 +1,10 @@
+AUTO - - VU-987
+Estado:  poner estado
+Marca: SADAS
+Modelo: ASDAS
+Año: 2022
+Kilometraje: 321312
+Precio: 10000
+Descuento: 60
+Color: AZUL
+Placa: BRP-432

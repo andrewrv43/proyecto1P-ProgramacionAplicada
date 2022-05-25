@@ -103,6 +103,11 @@ public class ventana_registrar extends JPanel {
 					a.setBounds(50, 50, 800, 900);
 					a.getContentPane().add(v);
 					a.show();
+					Window w = SwingUtilities.getWindowAncestor(panel);
+
+					w.setVisible(false);
+					panel.setVisible(false);
+					vt.btnNewButton.setEnabled(true);
 				}else {
 					ventans("Usuario o contraseña incorrectas");
 				}
@@ -130,6 +135,7 @@ public class ventana_registrar extends JPanel {
 					String[] s1 = b.split(";");
 					if(pass.equals(s1[1])&&user.equals(s1[0])) {
 						System.out.println("ACEPTADO");
+						
 						return true;
 					}
 					//System.out.println(s1[0] + " " + s1[1]);
