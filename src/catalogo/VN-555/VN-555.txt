@@ -1,10 +1,10 @@
 AUTO - - VN-555
 Estado:  poner estado
-Marca: AFFA
-Modelo: DG
-Año: 2014
-Kilometraje: 455
-Precio: 474
-Descuento: 20
-Color: FLOH
-Placa: FGH-772
+Marca: AVEO
+Modelo: EMOTION
+Año: 2002
+Kilometraje: 50000
+Precio: 20000
+Descuento: 10
+Color: ROJO
+Placa: PBD-5678

@@ -14,7 +14,7 @@ public class carro {
 	private gestionImagen img;
 	private int contador = 1;
 	private int contadorArchivo = 1;
-	
+
 	public carro(String codigo, String marca, String modelo, String color, String placa, String tapiceria,
 			String cjCambios, long kilometraje,int year, int descuento,double precio, int width, int height) {
 		this.codigo=codigo;
@@ -28,14 +28,17 @@ public class carro {
 		this.year=year;
 		this.descuento=descuento;
 		this.precio=precio;
-		
+
 		//datos para las imagenes
 		img = new gestionImagen(width, height);
 	}
-	
+	public String getPrecio() {
+		return String.valueOf(precio);
+	}
+
 	public String getDatos() {
 		return "probando 1 2 3";
-		
+
 	}
 	public Icon iniciar() {
 		return img.iniciar(contador, codigo);
@@ -58,5 +61,10 @@ public class carro {
 	public String getCodigo() {
 		return codigo;
 	}
-
+	public String getMarca() {
+		return marca;
+	}
+	public String getModelo(){
+		return modelo;
+	}
 }

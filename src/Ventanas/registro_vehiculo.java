@@ -184,7 +184,8 @@ public class registro_vehiculo extends JPanel {
 
 		JComboBox comboBox = new JComboBox();
 		comboBox.setBounds(273, 522, 210, 21);
-		comboBox.addItem("Prueba");
+		comboBox.addItem("Cuero");
+		comboBox.addItem("Sintetico");
 		panel.add(comboBox);
 
 		JLabel lblCajaDeCambios = new JLabel("CAJA DE CAMBIOS:");
@@ -194,7 +195,8 @@ public class registro_vehiculo extends JPanel {
 
 		JComboBox comboBox_1 = new JComboBox();
 		comboBox_1.setBounds(273, 559, 210, 21);
-		comboBox_1.addItem("Prueba");
+		comboBox_1.addItem("Automatica");
+		comboBox_1.addItem("Manual");
 		panel.add(comboBox_1);
 
 		JLabel lblImagenes = new JLabel("IM\u00C1GENES:");

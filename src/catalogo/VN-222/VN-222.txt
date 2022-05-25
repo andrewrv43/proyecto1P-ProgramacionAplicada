@@ -1,0 +1,10 @@
+AUTO - - VN-222
+Estado:  poner estado
+Marca: KLK
+Modelo: FUI
+Año: 5555
+Kilometraje: 80000
+Precio: 3098
+Descuento: 21
+Color: AZUL
+Placa: PDU-7898

@@ -25,7 +25,7 @@ import java.awt.event.ActionEvent;
 
 public class ventana_catalogo extends JPanel {
 	private JTextField in_abuscar;
-
+	private int cont = 0;
 
 	/**
 	 * Create the panel.
@@ -127,11 +127,42 @@ public class ventana_catalogo extends JPanel {
 		panel.add(btn_añadirimg);
 		
 		JButton btn_atras = new JButton("<<");
+		btn_atras.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(cont <= 0){
+					System.out.println(vt.listC.size());
+					cont = vt.listC.size()-1;
+				}else {
+					cont --;
+				}
+				out_codigo.setText(vt.listC.get(cont).getCodigo());
+				out_marca.setText(vt.listC.get(cont).getMarca());
+				out_modelo.setText(vt.listC.get(cont).getModelo());
+				out_precio_venta.setText(vt.listC.get(cont).getPrecio());
+				out_image.setIcon(vt.listC.get(cont).iniciar());
+
+			}
+		});
 		btn_atras.setBounds(23, 221, 85, 86);
 		panel.add(btn_atras);
 		btn_atras.setFont(new Font("Century Gothic", Font.BOLD, 30));
 		
 		JButton btn_siguiente = new JButton(">>");
+		btn_siguiente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(cont >= vt.listC.size()-1){
+					cont = 0;
+				}else {
+					cont ++;
+				}
+				out_codigo.setText(vt.listC.get(cont).getCodigo());
+				out_marca.setText(vt.listC.get(cont).getMarca());
+				out_modelo.setText(vt.listC.get(cont).getModelo());
+				out_precio_venta.setText(vt.listC.get(cont).getPrecio());
+				out_image.setIcon(vt.listC.get(cont).iniciar());
+
+			}
+		});
 		btn_siguiente.setBounds(653, 221, 85, 86);
 		panel.add(btn_siguiente);
 		btn_siguiente.setFont(new Font("Century Gothic", Font.BOLD, 30));
@@ -140,8 +171,12 @@ public class ventana_catalogo extends JPanel {
 		for (carro carro : vt.listC) {
 			System.out.print(carro.getCodigo());
 		}
-
-			//out_image.setIcon(lista.get(0).iniciar());
+		
+		out_codigo.setText(vt.listC.get(cont).getCodigo());
+		out_marca.setText(vt.listC.get(cont).getMarca());
+		out_modelo.setText(vt.listC.get(cont).getModelo());
+		out_precio_venta.setText(vt.listC.get(cont).getPrecio());
+		out_image.setIcon(vt.listC.get(cont).iniciar());
 
 	}
 }
