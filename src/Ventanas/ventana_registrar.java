@@ -2,6 +2,8 @@ package Ventanas;
 
 import javax.swing.JPanel;
 import javax.swing.JButton;
+import javax.swing.JFrame;
+
 import java.awt.Font;
 import java.awt.Window;
 
@@ -94,12 +96,19 @@ public class ventana_registrar extends JPanel {
 		btn_ingresar.addActionListener(new ActionListener() {
 			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
-				if(ingreso(in_usuario.getText(), in_password.getText())) {
+				registro_vehiculo v = new registro_vehiculo();
+				JFrame a = new JFrame();
+				
+				a.setBounds(50, 50, 800, 900);
+				a.getContentPane().add(v);
+				a.show();
+				
+				/*if(ingreso(in_usuario.getText(), in_password.getText())) {
 					
 				}else {
 					JOptionPane.showInputDialog(this, "Usuario o contraseña incorrecta");
 
-				}
+				}*/
 			}
 		});
 		btn_ingresar.setFont(new Font("Century Gothic", Font.PLAIN, 14));

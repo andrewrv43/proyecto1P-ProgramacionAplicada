@@ -5,13 +5,30 @@ import javax.swing.JScrollPane;
 import javax.swing.JToolBar;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+import java.util.ArrayList;
+
 import javax.swing.JRadioButton;
 import javax.swing.SwingConstants;
 import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.border.TitledBorder;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
+import auto.carro;
+
 import javax.swing.border.EtchedBorder;
 import java.awt.Color;
 import java.awt.FlowLayout;
@@ -19,6 +36,8 @@ import javax.swing.border.BevelBorder;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class registro_vehiculo extends JPanel {
 	private JTextField in_codigo;
@@ -31,6 +50,12 @@ public class registro_vehiculo extends JPanel {
 	private JTextField in_color;
 	private JTextField in_placa;
 
+	
+	private carro c;
+	private ArrayList<carro> listC = new ArrayList<carro>();
+	private ArrayList<File> listIMG = new ArrayList<File>();
+	public JFileChooser ventana = new JFileChooser("");
+	public FileNameExtensionFilter filtro = new FileNameExtensionFilter("JPG", "jpg");
 	/**
 	 * Create the panel.
 	 */
@@ -161,8 +186,8 @@ public class registro_vehiculo extends JPanel {
 		panel.add(lblTapiceria);
 		
 		JComboBox comboBox = new JComboBox();
-		comboBox.setSelectedIndex(3);
 		comboBox.setBounds(273, 522, 210, 21);
+		comboBox.addItem("Prueba");
 		panel.add(comboBox);
 		
 		JLabel lblCajaDeCambios = new JLabel("CAJA DE CAMBIOS:");
@@ -172,6 +197,7 @@ public class registro_vehiculo extends JPanel {
 		
 		JComboBox comboBox_1 = new JComboBox();
 		comboBox_1.setBounds(273, 559, 210, 21);
+		comboBox_1.addItem("Prueba");
 		panel.add(comboBox_1);
 		
 		JLabel lblImagenes = new JLabel("IM\u00C1GENES:");
@@ -181,6 +207,11 @@ public class registro_vehiculo extends JPanel {
 		panel.add(lblImagenes);
 		
 		JButton btn_agregar = new JButton("A\u00D1ADIR");
+		btn_agregar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+					listIMG = guardar(listIMG);
+			}
+		});
 		btn_agregar.setFont(new Font("Century Gothic", Font.ITALIC, 12));
 		btn_agregar.setBounds(273, 612, 131, 34);
 		panel.add(btn_agregar);
@@ -192,6 +223,46 @@ public class registro_vehiculo extends JPanel {
 		panel_1.setLayout(null);
 		
 		JButton btn_guardar = new JButton("GUARDAR");
+		btn_guardar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String ruta = "src/catalogo/" + in_codigo;
+				File directorio = new File(ruta);
+				if(!directorio.exists()) {
+					if(directorio.mkdir()) {
+						String rutatxt = ruta + in_codigo.getText();
+						directorio = new File(rutatxt);
+						try {
+							FileWriter archivo = new FileWriter(directorio);
+							BufferedWriter escribir = new BufferedWriter(archivo);
+							escribir.write("AUTO - - " + in_codigo.getText() + "\n"
+											+ "Estado: " + " poner estado" + "\n"
+											+ "Marca: " + in_marca.getText() + "\n" +
+											"Modelo: " + in_modelo.getText() + "\n" +
+											"Año: " + in_anio.getText() + "\n" +
+											"Kilometraje: " + in_kilome.getText() + "\n" +
+											"Precio: " + in_precio.getText() + "\n" + 
+											"Color: " + in_color.getText() + "\n" +
+											"Placa: " + in_placa.getText());
+							escribir.close();
+							archivo.close();
+						} catch (IOException v) {
+							// TODO Auto-generated catch block
+							v.printStackTrace();
+						}				
+						ruta += "/img";
+						directorio = new File(ruta);
+						if(directorio.mkdir()) {
+							for (carro carro : listC) {
+								
+							}
+						}
+					}
+				}else {
+					
+				}
+	
+			}
+		});
 		btn_guardar.setFont(new Font("Century Gothic", Font.ITALIC, 15));
 		btn_guardar.setBounds(10, 10, 115, 30);
 		panel_1.add(btn_guardar);
@@ -212,4 +283,13 @@ public class registro_vehiculo extends JPanel {
 		add(lblOpciones);
 
 	}
+	public ArrayList<File> guardar(ArrayList<File> list) {
+		ventana.setFileFilter(filtro);
+		ventana.showOpenDialog(this);
+		File ar = ventana.getSelectedFile();
+		list.add(ar);
+		JOptionPane.showMessageDialog(this, "Archivo guardado con exito");
+		return list;
+	}
+	
 }
