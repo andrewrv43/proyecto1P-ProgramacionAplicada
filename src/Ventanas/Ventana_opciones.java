@@ -21,6 +21,13 @@ import java.awt.Window;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
@@ -113,13 +120,59 @@ public class Ventana_opciones extends JPanel {
 	public void add(carro d) {
 		listC.add(d);
 	}
-	
 	//PENDIENTE
 	public void exp() {
-		String dat="";
-		for(carro a:listC) {
-			dat+=a.getCodigo()+"\n";
+		String ruta = "src/DATA/";
+		File directorio = new File(ruta);
+		if(!directorio.exists()) {
+			if(directorio.mkdir()) {
+				String rutatxt = ruta + "array.txt";
+				directorio = new File(rutatxt);
+				try {
+					FileWriter archivo = new FileWriter(directorio,true);
+					BufferedWriter escribir = new BufferedWriter(archivo);
+					escribir.write(listC.get(listC.size()-1).getDatos());
+					escribir.close();
+					archivo.close();
+				} catch (IOException v) {
+					// TODO Auto-generated catch block
+					v.printStackTrace();
+				}
+			}
+		}else {
+
+		}
+	}
+	public void imp() {
+		String b="";
+		BufferedReader br;
+		try {
+			FileReader lect=new FileReader ("src/DATA/array.txt");
+			
+			br = new BufferedReader (lect);
+			try {
+				while(br.readLine() != null) {
+					b=br.readLine();
+
+					String[] s1 = b.split(";");
+for(String a:s1) {
+	System.out.println(a);
+}
+					//System.out.println(s1[0] + " " + s1[1]);
+					
+				}
+			
+
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				System.out.println("malo 1");
+			}
+		} catch (FileNotFoundException e1) {
+			// TODO Auto-generated catch 
+			System.out.println("malo");
 		}
 		
+
 	}
+
 }

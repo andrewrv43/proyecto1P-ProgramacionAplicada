@@ -12,7 +12,7 @@ public class carro {
 	private int year,descuento;
 	private double precio;
 	private gestionImagen img;
-	private int contador = 1;
+	private int contador = 1,width,height;
 	private int contadorArchivo = 1;
 
 	public carro(String codigo, String marca, String modelo, String color, String placa, String tapiceria,
@@ -28,7 +28,8 @@ public class carro {
 		this.year=year;
 		this.descuento=descuento;
 		this.precio=precio;
-
+		this.width=width;
+		this.height=height;
 		//datos para las imagenes
 		img = new gestionImagen(width, height);
 	}
@@ -37,7 +38,8 @@ public class carro {
 	}
 
 	public String getDatos() {
-		return "probando 1 2 3";
+		return codigo+";"+marca+";"+modelo+";"+color+";"+placa+";"+tapiceria+";"+
+	cjCambios+";"+kilometraje+";"+year+";"+descuento+";"+precio+";"+width+";"+height;
 
 	}
 	public Icon iniciar() {

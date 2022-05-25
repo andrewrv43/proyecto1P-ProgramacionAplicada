@@ -277,6 +277,7 @@ public class registro_vehiculo extends JPanel {
 					else
 						System.out.println("DATOS MAL INGRESADOS");
 				}
+				vo.exp();
 			}
 		});
 		btn_guardar.setFont(new Font("Century Gothic", Font.ITALIC, 15));
