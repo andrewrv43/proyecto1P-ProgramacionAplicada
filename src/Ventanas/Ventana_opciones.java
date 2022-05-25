@@ -51,6 +51,7 @@ public class Ventana_opciones extends JPanel {
 		panel.add(lblSajacar);
 		
 		JEditorPane dtrpnBienvenidoEstaEs = new JEditorPane();
+		dtrpnBienvenidoEstaEs.setEditable(false);
 		dtrpnBienvenidoEstaEs.setFont(new Font("Century Gothic", Font.ITALIC, 13));
 		dtrpnBienvenidoEstaEs.setBackground(SystemColor.control);
 		dtrpnBienvenidoEstaEs.setText("BIENVENIDO.  \r\nEsta es la aplicacion oficial de SAJACAR, espero que disfrutes \r\ncon nosotros esta experiencia y recuerda... \r\nQuieres un sue\u00F1o en SAJACAR lo cumpliras.");
