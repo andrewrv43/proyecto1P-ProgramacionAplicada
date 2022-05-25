@@ -68,7 +68,7 @@ public class Ventana_opciones extends JPanel {
 				a.getContentPane().add(vr);
 				a.setVisible(true);
 				btnNewButton.setEnabled(false);
-				
+
 			}	
 		});
 		btnNewButton.setEnabled(true);

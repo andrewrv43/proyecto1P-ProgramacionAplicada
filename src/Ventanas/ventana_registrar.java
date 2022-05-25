@@ -6,6 +6,7 @@ import java.awt.Font;
 import java.awt.Window;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.border.MatteBorder;
 import java.awt.Color;
@@ -14,6 +15,12 @@ import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Scanner;
 import java.awt.event.ActionEvent;
 
 public class ventana_registrar extends JPanel {
@@ -26,6 +33,8 @@ public class ventana_registrar extends JPanel {
 	public boolean getAbierto() {
 		return abierto;
 	}
+
+
 	public JButton btn_cancelar = new JButton("CANCELAR");
 	public ventana_registrar(Ventana_opciones vt) {
 		setLayout(null);
@@ -67,11 +76,11 @@ public class ventana_registrar extends JPanel {
 		lblPassword.setBounds(50, 155, 137, 34);
 		panel.add(lblPassword);
 
-		
+
 		btn_cancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Window w = SwingUtilities.getWindowAncestor(panel);
-				
+
 				w.setVisible(false);
 				panel.setVisible(false);
 				vt.btnNewButton.setEnabled(true);
@@ -82,6 +91,17 @@ public class ventana_registrar extends JPanel {
 		panel.add(btn_cancelar);
 
 		JButton btn_ingresar = new JButton("INGRESAR");
+		btn_ingresar.addActionListener(new ActionListener() {
+			@SuppressWarnings("deprecation")
+			public void actionPerformed(ActionEvent e) {
+				if(ingreso(in_usuario.getText(), in_password.getText())) {
+					
+				}else {
+					JOptionPane.showInputDialog(this, "Usuario o contraseña incorrecta");
+
+				}
+			}
+		});
 		btn_ingresar.setFont(new Font("Century Gothic", Font.PLAIN, 14));
 		btn_ingresar.setBounds(241, 220, 119, 35);
 		panel.add(btn_ingresar);
@@ -91,4 +111,36 @@ public class ventana_registrar extends JPanel {
 		panel.add(in_password);
 
 	}
+	@SuppressWarnings("resource")
+	public boolean ingreso(String user, String pass) {
+		
+		BufferedReader br;
+		try {
+			br = new BufferedReader (new FileReader ("src/datos.txt"));
+			try {
+				while(br != null) {
+					String b = br.readLine();
+					String[] s1 = b.split(";");
+					System.out.println(s1[0] + " " + s1[1]);
+					if(s1[0].equals(user) && s1[1].equals(pass)) {
+						System.out.println("asd");
+						return true;
+					}
+					System.out.println("no entrew");
+				}
+				return false;
+				
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				System.out.println("malo 1");
+			}
+		} catch (FileNotFoundException e1) {
+			// TODO Auto-generated catch 
+System.out.println("malo");
+		}
+		return false;
+
+	}
+
 }
+
