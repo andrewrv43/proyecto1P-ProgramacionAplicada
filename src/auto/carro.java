@@ -7,7 +7,7 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
 public class carro {
-	private String marca, modelo, color, placa, tapiceria,cjCambios;
+	private String marca, modelo, color, placa, tapiceria,cjCambios, codigo;
 	private long kilometraje;
 	private int year,descuento;
 	private double precio;
@@ -15,8 +15,9 @@ public class carro {
 	private int contador = 1;
 	private int contadorArchivo = 1;
 	
-	public carro(String marca, String modelo, String color, String placa, String tapiceria,
+	public carro(String codigo, String marca, String modelo, String color, String placa, String tapiceria,
 			String cjCambios, long kilometraje,int year, int descuento,double precio, int width, int height) {
+		this.codigo=codigo;
 		this.marca=marca;
 		this.modelo=modelo;
 		this.color=color;
@@ -45,6 +46,17 @@ public class carro {
 	public Icon anterior() {
 		return img.anterior(contador, placa);
 	}
-	
+	public gestionImagen getIMG() {
+		return img;
+	}
+	public int getContadorArchivos() {
+		return contadorArchivo;
+	}
+	public void setContadorArchivos(int newContador) {
+		contadorArchivo = newContador;
+	}
+	public String getCodigo() {
+		return codigo;
+	}
 
 }

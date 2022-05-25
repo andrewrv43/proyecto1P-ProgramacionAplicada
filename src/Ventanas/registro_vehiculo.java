@@ -225,11 +225,27 @@ public class registro_vehiculo extends JPanel {
 		JButton btn_guardar = new JButton("GUARDAR");
 		btn_guardar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String ruta = "src/catalogo/" + in_codigo;
+				c = new carro(in_codigo.getText(),
+							in_marca.getText(),
+							in_modelo.getText(),
+							in_color.getText(),
+							in_placa.getText(),
+							"Tapiceria",
+							"Caja de cambios",
+							Long.parseLong(in_kilome.getText()),
+							Integer.parseInt(in_anio.getText()),
+							Integer.parseInt(in_desc.getText()),
+							Double.parseDouble(in_precio.getText()),
+							496,
+							194);
+				
+				
+				
+				String ruta = "src/catalogo/" + in_codigo.getText() + "/";
 				File directorio = new File(ruta);
 				if(!directorio.exists()) {
 					if(directorio.mkdir()) {
-						String rutatxt = ruta + in_codigo.getText();
+						String rutatxt = ruta + in_codigo.getText() + ".txt";
 						directorio = new File(rutatxt);
 						try {
 							FileWriter archivo = new FileWriter(directorio);
@@ -249,14 +265,18 @@ public class registro_vehiculo extends JPanel {
 							// TODO Auto-generated catch block
 							v.printStackTrace();
 						}				
-						ruta += "/img";
+						ruta += "img/";
 						directorio = new File(ruta);
 						if(directorio.mkdir()) {
-							for (carro carro : listC) {
-								
+							for (File car : listIMG) {
+								c.getIMG().guardarImagen(car, c.getContadorArchivos(), in_codigo.getText());
+								c.setContadorArchivos(c.getContadorArchivos() + 1);
 							}
 						}
+						System.out.println("asda");
 					}
+					System.out.println("aca estoy");
+					System.out.println(directorio.getAbsolutePath());
 				}else {
 					
 				}

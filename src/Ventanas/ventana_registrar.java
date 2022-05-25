@@ -97,18 +97,15 @@ public class ventana_registrar extends JPanel {
 			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
 				registro_vehiculo v = new registro_vehiculo();
-				JFrame a = new JFrame();
-				
-				a.setBounds(50, 50, 800, 900);
-				a.getContentPane().add(v);
-				a.show();
-				
-				/*if(ingreso(in_usuario.getText(), in_password.getText())) {
-					
-				}else {
-					JOptionPane.showInputDialog(this, "Usuario o contraseña incorrecta");
 
-				}*/
+				if(ingreso(in_usuario.getText(), in_password.getText())) {
+					JFrame a = new JFrame();
+					a.setBounds(50, 50, 800, 900);
+					a.getContentPane().add(v);
+					a.show();
+				}else {
+					ventans("Usuario o contraseña incorrectas");
+				}
 			}
 		});
 		btn_ingresar.setFont(new Font("Century Gothic", Font.PLAIN, 14));
@@ -122,34 +119,37 @@ public class ventana_registrar extends JPanel {
 	}
 	@SuppressWarnings("resource")
 	public boolean ingreso(String user, String pass) {
-		
+		String b="";
 		BufferedReader br;
 		try {
 			br = new BufferedReader (new FileReader ("src/datos.txt"));
 			try {
-				while(br != null) {
-					String b = br.readLine();
+				do {
+					b=br.readLine();
+
 					String[] s1 = b.split(";");
-					System.out.println(s1[0] + " " + s1[1]);
-					if(s1[0].equals(user) && s1[1].equals(pass)) {
-						System.out.println("asd");
+					if(pass.equals(s1[1])&&user.equals(s1[0])) {
+						System.out.println("ACEPTADO");
 						return true;
 					}
-					System.out.println("no entrew");
-				}
+					//System.out.println(s1[0] + " " + s1[1]);
+					b=br.readLine();
+				}while(b != null);
 				return false;
-				
+
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				System.out.println("malo 1");
 			}
 		} catch (FileNotFoundException e1) {
 			// TODO Auto-generated catch 
-System.out.println("malo");
+			System.out.println("malo");
 		}
 		return false;
 
 	}
-
+	public void ventans(String text) {
+		JOptionPane.showMessageDialog(this, text);
+	}
 }
 

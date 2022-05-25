@@ -1,0 +1,9 @@
+AUTO - - AQUI
+Estado:  poner estado
+Marca: a
+Modelo: a
+Año: 2
+Kilometraje: 4
+Precio: 5
+Color: 5
+Placa: 1

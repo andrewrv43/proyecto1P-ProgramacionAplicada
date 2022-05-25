@@ -26,7 +26,7 @@ public class gestionImagen {
 		this.height = height;
 	}
 
-	public boolean guardarImagen(File ar, int contadorArchivo) {
+	public boolean guardarImagen(File ar, int contadorArchivo, String codigo) {
 		/*ventana.setFileFilter(filtro);
 		ventana.showOpenDialog(this);*/
 		File archivo = ar;
@@ -36,7 +36,7 @@ public class gestionImagen {
 
 			try {
 				//destino
-				String des =  "Auto 1/img/" + contadorArchivo +".jpg";
+				String des = "src/catalogo/" + codigo + "/img/" + contadorArchivo +".jpg";
 				Path destino = Paths.get(des);
 
 				//origen
@@ -60,8 +60,8 @@ public class gestionImagen {
 		}
 	}
 	
-	public Icon iniciar(int contador, String placa) {
-		image = new ImageIcon(placa + "/img/" + contador +".jpg");
+	public Icon iniciar(int contador, String codigo) {
+		image = new ImageIcon("src/catalogo" + codigo + "/img/" + contador +".jpg");
 		return im = new ImageIcon(image.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH));
 	}
 	public Icon siguiente(int contador, String placa) {
@@ -75,15 +75,15 @@ public class gestionImagen {
 		image = new ImageIcon(placa + "/img/" + contador +".jpg");
 		return im = new ImageIcon(image.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH));
 	}
-	public Icon anterior(int contador, String placa) {
-		File directorio = new File("Auto 1/img");
+	public Icon anterior(int contador, String codigo) {
+		File directorio = new File(codigo + "/img");
 		File[] nimg = directorio.listFiles();
 		if(contador <= 1){
 			contador = nimg.length;
 		}else {
 			contador --;
 		}
-		image = new ImageIcon(placa + "/img/" + contador +".jpg");
+		image = new ImageIcon(codigo + "/img/" + contador +".jpg");
 		return im = new ImageIcon(image.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH));
 	}
 }
