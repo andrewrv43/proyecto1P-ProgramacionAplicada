@@ -15,17 +15,24 @@ import javax.swing.JToggleButton;
 import javax.swing.SwingConstants;
 import javax.swing.JSplitPane;
 import javax.swing.border.MatteBorder;
+
+import auto.carro;
+
 import java.awt.Color;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
 public class ventana_catalogo extends JPanel {
 	private JTextField in_abuscar;
 
+	private registro_vehiculo r = new registro_vehiculo();
+	private ArrayList<carro> lista;
 	/**
 	 * Create the panel.
 	 */
-	public ventana_catalogo() {
+	public ventana_catalogo(ArrayList<carro> lista) {
+		this.lista = lista;
 		setLayout(null);
 		
 		JPanel panel = new JPanel();
@@ -62,11 +69,6 @@ public class ventana_catalogo extends JPanel {
 		btn_otrosBuscador.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		btn_otrosBuscador.setBounds(365, 13, 47, 28);
 		panel_1.add(btn_otrosBuscador);
-		
-		JPanel out_imagen = new JPanel();
-		out_imagen.setBounds(35, 48, 446, 194);
-		panel_1.add(out_imagen);
-		out_imagen.setLayout(null);
 		
 		JLabel lblCdigo = new JLabel("C\u00D3DIGO:");
 		lblCdigo.setHorizontalAlignment(SwingConstants.LEFT);
@@ -116,24 +118,31 @@ public class ventana_catalogo extends JPanel {
 		out_precio_venta.setBounds(249, 382, 115, 28);
 		panel_1.add(out_precio_venta);
 		
+		JLabel out_image = new JLabel("");
+		out_image.setBounds(61, 48, 379, 209);
+		panel_1.add(out_image);
+		
+		JButton btn_añadirimg = new JButton("More images");
+		btn_añadirimg.setFont(new Font("Century Gothic", Font.BOLD, 20));
+		btn_añadirimg.setBounds(283, 485, 201, 51);
+		panel.add(btn_añadirimg);
+		
 		JButton btn_atras = new JButton("<<");
-		btn_atras.setFont(new Font("Century Gothic", Font.BOLD, 30));
-		btn_atras.setBounds(23, 217, 85, 86);
+		btn_atras.setBounds(23, 221, 85, 86);
 		panel.add(btn_atras);
+		btn_atras.setFont(new Font("Century Gothic", Font.BOLD, 30));
 		
 		JButton btn_siguiente = new JButton(">>");
-		btn_siguiente.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btn_siguiente.setFont(new Font("Century Gothic", Font.BOLD, 30));
-		btn_siguiente.setBounds(653, 217, 85, 86);
+		btn_siguiente.setBounds(653, 221, 85, 86);
 		panel.add(btn_siguiente);
+		btn_siguiente.setFont(new Font("Century Gothic", Font.BOLD, 30));
 		
-		JButton btn_añadirimg = new JButton("A\u00F1adir im\u00E1genes");
-		btn_añadirimg.setFont(new Font("Century Gothic", Font.BOLD, 20));
-		btn_añadirimg.setBounds(276, 488, 201, 51);
-		panel.add(btn_añadirimg);
+		System.out.println("aaa");
+		for (carro carro : lista) {
+			System.out.print(carro.getCodigo());
+		}
+
+			//out_image.setIcon(lista.get(0).iniciar());
 
 	}
 }

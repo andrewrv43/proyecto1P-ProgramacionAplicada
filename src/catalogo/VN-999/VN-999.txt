@@ -1,0 +1,10 @@
+AUTO - - VN-999
+Estado:  poner estado
+Marca: ADF
+Modelo: SFSD
+Año: 2457
+Kilometraje: 45
+Precio: 45
+Descuento: 260
+Color: ADF
+Placa: ADG-789

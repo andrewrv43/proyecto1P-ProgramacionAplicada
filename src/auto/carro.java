@@ -38,13 +38,13 @@ public class carro {
 		
 	}
 	public Icon iniciar() {
-		return img.iniciar(contador, placa);
+		return img.iniciar(contador, codigo);
 	}
 	public Icon siguiente() {
-		return img.siguiente(contador, placa);
+		return img.siguiente(contador, codigo);
 	}
 	public Icon anterior() {
-		return img.anterior(contador, placa);
+		return img.anterior(contador, codigo);
 	}
 	public gestionImagen getIMG() {
 		return img;

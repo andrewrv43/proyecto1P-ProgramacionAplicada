@@ -61,29 +61,29 @@ public class gestionImagen {
 	}
 	
 	public Icon iniciar(int contador, String codigo) {
-		image = new ImageIcon("src/catalogo" + codigo + "/img/" + contador +".jpg");
+		image = new ImageIcon("src/catalogo/" + codigo + "/img/" + contador +".jpg");
 		return im = new ImageIcon(image.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH));
 	}
-	public Icon siguiente(int contador, String placa) {
-		File directorio = new File("Auto 1/img");
+	public Icon siguiente(int contador, String codigo) {
+		File directorio = new File("src/catalogo/"+ codigo + "/img");
 		File[] nimg = directorio.listFiles();
 		if(contador >= nimg.length){
 			contador = 1;
 		}else {
 			contador ++;
 		}
-		image = new ImageIcon(placa + "/img/" + contador +".jpg");
+		image = new ImageIcon("src/catalogo/" + codigo + "/img/" + contador +".jpg");
 		return im = new ImageIcon(image.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH));
 	}
 	public Icon anterior(int contador, String codigo) {
-		File directorio = new File(codigo + "/img");
+		File directorio = new File("src/catalogo"+ codigo + "/img");
 		File[] nimg = directorio.listFiles();
 		if(contador <= 1){
 			contador = nimg.length;
 		}else {
 			contador --;
 		}
-		image = new ImageIcon(codigo + "/img/" + contador +".jpg");
+		image = new ImageIcon("src/catalogo/" + codigo + "/img/" + contador +".jpg");
 		return im = new ImageIcon(image.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH));
 	}
 }

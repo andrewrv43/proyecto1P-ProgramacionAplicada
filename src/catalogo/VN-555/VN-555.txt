@@ -1,0 +1,10 @@
+AUTO - - VN-555
+Estado:  poner estado
+Marca: AFFA
+Modelo: DG
+Año: 2014
+Kilometraje: 455
+Precio: 474
+Descuento: 20
+Color: FLOH
+Placa: FGH-772

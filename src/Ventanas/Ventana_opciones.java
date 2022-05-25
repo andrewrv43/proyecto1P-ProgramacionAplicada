@@ -8,6 +8,8 @@ import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.MatteBorder;
 
+import auto.carro;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import javax.swing.JToggleButton;
@@ -19,6 +21,7 @@ import java.awt.Window;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
 public class Ventana_opciones extends JPanel {
@@ -27,7 +30,10 @@ public class Ventana_opciones extends JPanel {
 	 * Create the panel.
 	 */
 	private ventana_registrar vr;
+	private ventana_catalogo vc;
 	private Ventana_opciones vo;
+	private ArrayList<carro> listC = new ArrayList<carro>();
+
 	public JButton btnNewButton = new JButton("REGISTRAR");
 	public Ventana_opciones() {
 		setLayout(null);
@@ -79,6 +85,11 @@ public class Ventana_opciones extends JPanel {
 		JButton btnCatalogo = new JButton("CATALOGO");
 		btnCatalogo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				vc = new ventana_catalogo(listC);
+				JFrame a = new JFrame();
+				a.setBounds(50, 50, 800, 800);
+				a.getContentPane().add(vc);
+				a.setVisible(true);
 			}
 		});
 		btnCatalogo.setFont(new Font("Century Gothic", Font.BOLD | Font.ITALIC, 20));
@@ -96,5 +107,8 @@ public class Ventana_opciones extends JPanel {
 		panel.add(btnVender);
 		
 		vo=this;
+	}
+	public void add(carro d) {
+		listC.add(d);
 	}
 }

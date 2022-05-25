@@ -1,0 +1,10 @@
+AUTO - - VN-478
+Estado:  poner estado
+Marca: ASDA
+Modelo: SDF
+Año: 2014
+Kilometraje: 445
+Precio: 45
+Descuento: 10
+Color: SFDSF
+Placa: AAF-4785

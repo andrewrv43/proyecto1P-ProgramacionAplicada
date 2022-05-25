@@ -2,7 +2,7 @@ package validaciones;
 
 public class validar {
 	
-	public boolean validate(String cd,String mrc,String y,Long k,String p,String col,String pla) {
+	public boolean validate(String cd,String mrc,String y,String k,String p,String col,String pla) {
 
 		if(!vCodigo(cd)) {
 			System.out.println("CODIGO MAL");
@@ -46,9 +46,9 @@ public class validar {
 	public boolean vYear(String y) {
 		return y.matches("[0-9]{4}");
 	}
-	public boolean vKilo(Long k) {
+	public boolean vKilo(String k) {
 		
-		return Long.toString(k).matches("[0-9]*");
+		return k.matches("[0-9]*");
 	}
 	public boolean vPrecio(String p) {
 		return p.matches("[0-9]*");
