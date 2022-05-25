@@ -1,0 +1,10 @@
+AUTO - - VN-123
+Estado:  poner estado
+Marca: ASDASD
+Modelo: ASDAS
+Año: 2017
+Kilometraje: 23123123
+Precio: 1234
+Descuento: 10
+Color: ASDASD
+Placa: PCN-3297

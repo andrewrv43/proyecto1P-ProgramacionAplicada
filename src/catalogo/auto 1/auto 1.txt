@@ -1,9 +1,0 @@
-AUTO - - auto 1
-Estado:  poner estado
-Marca: fer
-Modelo: fer rojo
-Año: 2014
-Kilometraje: 12
-Precio: 12
-Color: blue
-Placa: ASD-520

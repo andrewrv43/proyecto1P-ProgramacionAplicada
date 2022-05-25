@@ -28,6 +28,7 @@ import javax.swing.border.TitledBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import auto.carro;
+import validaciones.validar;
 
 import javax.swing.border.EtchedBorder;
 import java.awt.Color;
@@ -38,6 +39,7 @@ import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JSpinner;
 
 public class registro_vehiculo extends JPanel {
 	private JTextField in_codigo;
@@ -46,7 +48,6 @@ public class registro_vehiculo extends JPanel {
 	private JTextField in_anio;
 	private JTextField in_kilome;
 	private JTextField in_precio;
-	private JTextField in_desc;
 	private JTextField in_color;
 	private JTextField in_placa;
 
@@ -56,6 +57,7 @@ public class registro_vehiculo extends JPanel {
 	private ArrayList<File> listIMG = new ArrayList<File>();
 	public JFileChooser ventana = new JFileChooser("");
 	public FileNameExtensionFilter filtro = new FileNameExtensionFilter("JPG", "jpg");
+	public JSpinner in_desc = new JSpinner();
 	/**
 	 * Create the panel.
 	 */
@@ -155,11 +157,6 @@ public class registro_vehiculo extends JPanel {
 		lblDescuento.setBounds(309, 364, 115, 27);
 		panel.add(lblDescuento);
 		
-		in_desc = new JTextField();
-		in_desc.setColumns(10);
-		in_desc.setBounds(434, 367, 123, 27);
-		panel.add(in_desc);
-		
 		JLabel lblColor = new JLabel("COLOR:");
 		lblColor.setFont(new Font("Century Gothic", Font.BOLD, 16));
 		lblColor.setBounds(10, 410, 115, 27);
@@ -216,6 +213,10 @@ public class registro_vehiculo extends JPanel {
 		btn_agregar.setBounds(273, 612, 131, 34);
 		panel.add(btn_agregar);
 		
+		
+		in_desc.setBounds(450, 371, 57, 23);
+		panel.add(in_desc);
+		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new MatteBorder(5, 3, 1, 1, (Color) new Color(0, 0, 0)));
 		panel_1.setBounds(10, 713, 573, 50);
@@ -225,7 +226,10 @@ public class registro_vehiculo extends JPanel {
 		JButton btn_guardar = new JButton("GUARDAR");
 		btn_guardar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				c = new carro(in_codigo.getText(),
+				validar v=new validar();
+				if(v.validate(in_codigo.getText(),in_marca.getText(),in_anio.getText(),Long.parseLong(in_kilome.getText())
+						,in_precio.getText(),in_color.getText(),in_placa.getText())){
+					c = new carro(in_codigo.getText(),
 							in_marca.getText(),
 							in_modelo.getText(),
 							in_color.getText(),
@@ -234,53 +238,25 @@ public class registro_vehiculo extends JPanel {
 							"Caja de cambios",
 							Long.parseLong(in_kilome.getText()),
 							Integer.parseInt(in_anio.getText()),
-							Integer.parseInt(in_desc.getText()),
+							(Integer)(in_desc.getValue()),
 							Double.parseDouble(in_precio.getText()),
 							496,
 							194);
 				
-				
-				
-				String ruta = "src/catalogo/" + in_codigo.getText() + "/";
-				File directorio = new File(ruta);
-				if(!directorio.exists()) {
-					if(directorio.mkdir()) {
-						String rutatxt = ruta + in_codigo.getText() + ".txt";
-						directorio = new File(rutatxt);
-						try {
-							FileWriter archivo = new FileWriter(directorio);
-							BufferedWriter escribir = new BufferedWriter(archivo);
-							escribir.write("AUTO - - " + in_codigo.getText() + "\n"
-											+ "Estado: " + " poner estado" + "\n"
-											+ "Marca: " + in_marca.getText() + "\n" +
-											"Modelo: " + in_modelo.getText() + "\n" +
-											"Año: " + in_anio.getText() + "\n" +
-											"Kilometraje: " + in_kilome.getText() + "\n" +
-											"Precio: " + in_precio.getText() + "\n" + 
-											"Color: " + in_color.getText() + "\n" +
-											"Placa: " + in_placa.getText());
-							escribir.close();
-							archivo.close();
-						} catch (IOException v) {
-							// TODO Auto-generated catch block
-							v.printStackTrace();
-						}				
-						ruta += "img/";
-						directorio = new File(ruta);
-						if(directorio.mkdir()) {
-							for (File car : listIMG) {
-								c.getIMG().guardarImagen(car, c.getContadorArchivos(), in_codigo.getText());
-								c.setContadorArchivos(c.getContadorArchivos() + 1);
-							}
-						}
-						System.out.println("asda");
-					}
-					System.out.println("aca estoy");
-					System.out.println(directorio.getAbsolutePath());
-				}else {
-					
+				String ruta ="src/catalogo";
+				File direct=new File(ruta);
+				if(direct.exists()) {
+					crearCarpetas();
 				}
-	
+				else {
+					direct.mkdir();
+					crearCarpetas();
+				}
+				listIMG.clear();
+
+				}
+				else
+					System.out.println("DATOS MAL INGRESADOS");
 			}
 		});
 		btn_guardar.setFont(new Font("Century Gothic", Font.ITALIC, 15));
@@ -311,5 +287,46 @@ public class registro_vehiculo extends JPanel {
 		JOptionPane.showMessageDialog(this, "Archivo guardado con exito");
 		return list;
 	}
-	
+	public void crearCarpetas() {
+		String ruta = "src/catalogo/" + in_codigo.getText() + "/";
+		File directorio = new File(ruta);
+		if(!directorio.exists()) {
+			if(directorio.mkdir()) {
+				String rutatxt = ruta + in_codigo.getText() + ".txt";
+				directorio = new File(rutatxt);
+				try {
+					FileWriter archivo = new FileWriter(directorio);
+					BufferedWriter escribir = new BufferedWriter(archivo);
+					escribir.write("AUTO - - " + in_codigo.getText() + "\n"
+									+ "Estado: " + " poner estado" + "\n"
+									+ "Marca: " + in_marca.getText() + "\n" +
+									"Modelo: " + in_modelo.getText() + "\n" +
+									"Año: " + in_anio.getText() + "\n" +
+									"Kilometraje: " + in_kilome.getText() + "\n" +
+									"Precio: " + in_precio.getText() + "\n" + 
+									"Descuento: "+(Integer)in_desc.getValue()+"\n"+
+									"Color: " + in_color.getText() + "\n" +
+									"Placa: " + in_placa.getText());
+					escribir.close();
+					archivo.close();
+				} catch (IOException v) {
+					// TODO Auto-generated catch block
+					v.printStackTrace();
+				}				
+				ruta += "img/";
+				directorio = new File(ruta);
+				if(directorio.mkdir()) {
+					for (File car : listIMG) {
+						c.getIMG().guardarImagen(car, c.getContadorArchivos(), in_codigo.getText());
+						c.setContadorArchivos(c.getContadorArchivos() + 1);
+					}
+				}
+				System.out.println("asda");
+			}
+			System.out.println("aca estoy");
+			System.out.println(directorio.getAbsolutePath());
+		}else {
+			
+		}
+	}
 }

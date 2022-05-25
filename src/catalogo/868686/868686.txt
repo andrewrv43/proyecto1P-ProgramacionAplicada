@@ -1,0 +1,10 @@
+AUTO - - 868686
+Estado:  poner estado
+Marca: asdasd
+Modelo: asdasd
+Año: 12312
+Kilometraje: 23423423
+Precio: 23423423
+Descuento: 20
+Color: asdasd
+Placa: asdasd

@@ -1,9 +1,0 @@
-AUTO - - auto 2
-Estado:  poner estado
-Marca: ad
-Modelo: a
-Año: 2
-Kilometraje: 4
-Precio: 5
-Color: 5
-Placa: 1
