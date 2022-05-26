@@ -1,0 +1,10 @@
+AUTO - - VU-999
+Estado:  poner estado
+Marca: LOLOLOL
+Modelo: LOLOLOL
+Año: 2021
+Kilometraje: 020212
+Precio: 123
+Descuento: 20
+Color: AZUL
+Placa: PCN-3297
