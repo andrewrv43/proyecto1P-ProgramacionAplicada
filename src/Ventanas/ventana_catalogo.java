@@ -23,6 +23,7 @@ import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
+import javax.swing.ImageIcon;
 
 public class ventana_catalogo extends JPanel {
 	private JTextField in_abuscar;
@@ -37,10 +38,13 @@ public class ventana_catalogo extends JPanel {
 	public JLabel out_precio_venta = new JLabel("$ 0.00");
 	public JLabel out_image = new JLabel("");
 	public ventana_catalogo(Ventana_opciones vt) {
+		setBackground(Color.WHITE);
 
 		setLayout(null);
 
 		JPanel panel = new JPanel();
+		panel.setBorder(new MatteBorder(6, 3, 1, 1, (Color) new Color(0, 0, 0)));
+		panel.setBackground(Color.WHITE);
 		panel.setBounds(21, 22, 748, 558);
 		add(panel);
 		panel.setLayout(null);
@@ -55,6 +59,7 @@ public class ventana_catalogo extends JPanel {
 		panel.add(scrollPane);
 
 		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(Color.WHITE);
 		panel_1.setBorder(new MatteBorder(5, 3, 1, 1, (Color) new Color(0, 0, 0)));
 		panel_1.setBounds(125, 48, 512, 419);
 		panel.add(panel_1);
@@ -70,7 +75,8 @@ public class ventana_catalogo extends JPanel {
 		panel_1.add(in_abuscar);
 		in_abuscar.setColumns(10);
 
-		JButton btn_otrosBuscador = new JButton("...");
+		JButton btn_otrosBuscador = new JButton("");
+		btn_otrosBuscador.setIcon(new ImageIcon(ventana_catalogo.class.getResource("/Resources/redimensionado32.png")));
 		btn_otrosBuscador.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				validar v=new validar();
@@ -96,7 +102,7 @@ public class ventana_catalogo extends JPanel {
 			}
 		});
 		btn_otrosBuscador.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		btn_otrosBuscador.setBounds(365, 13, 47, 28);
+		btn_otrosBuscador.setBounds(373, 10, 32, 33);
 		panel_1.add(btn_otrosBuscador);
 
 		JLabel lblCdigo = new JLabel("C\u00D3DIGO:");
@@ -150,7 +156,7 @@ public class ventana_catalogo extends JPanel {
 		out_image.setBounds(61, 48, 379, 209);
 		panel_1.add(out_image);
 
-		JButton btn_añadirimg = new JButton("More images");
+		JButton btn_añadirimg = new JButton("+More images");
 		btn_añadirimg.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				imagenesCarrusel ca = new imagenesCarrusel(vt.listC.get(cont));

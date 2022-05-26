@@ -30,6 +30,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
+import javax.swing.ImageIcon;
 
 public class Ventana_opciones extends JPanel {
 
@@ -43,9 +44,11 @@ public class Ventana_opciones extends JPanel {
 
 	public JButton btnNewButton = new JButton("REGISTRAR");
 	public Ventana_opciones() {
+		setBackground(Color.WHITE);
 		setLayout(null);
 		imp();
 		JPanel panel = new JPanel();
+		panel.setBackground(Color.WHITE);
 		panel.setBorder(new MatteBorder(5, 3, 1, 1, (Color) new Color(0, 0, 0)));
 		panel.setBounds(21, 21, 425, 441);
 		add(panel);
@@ -53,16 +56,15 @@ public class Ventana_opciones extends JPanel {
 
 		JLabel lblSajacar = new JLabel("SAJACAR");
 		lblSajacar.setHorizontalAlignment(SwingConstants.CENTER);
-		lblSajacar.setFont(new Font("Century Gothic", Font.BOLD | Font.ITALIC, 31));
-		lblSajacar.setBounds(116, 10, 178, 28);
+		lblSajacar.setFont(new Font("Century Gothic", Font.BOLD | Font.ITALIC, 35));
+		lblSajacar.setBounds(116, 10, 178, 40);
 		panel.add(lblSajacar);
 
 		JEditorPane dtrpnBienvenidoEstaEs = new JEditorPane();
 		dtrpnBienvenidoEstaEs.setEditable(false);
 		dtrpnBienvenidoEstaEs.setFont(new Font("Century Gothic", Font.ITALIC, 13));
-		dtrpnBienvenidoEstaEs.setBackground(SystemColor.control);
-		dtrpnBienvenidoEstaEs.setText("BIENVENIDO.  \r\nEsta es la aplicacion oficial de SAJACAR,"
-				+ " espero que disfrutes \r\ncon nosotros esta experiencia y recuerda... \r\nQuieres un sue\u00F1o en SAJACAR lo cumpliras.");
+		dtrpnBienvenidoEstaEs.setBackground(Color.WHITE);
+		dtrpnBienvenidoEstaEs.setText("BIENVENIDO.  \r\nEsta es la aplicacion oficial de SAJACAR, espero que disfrutes \r\ncon nosotros esta experiencia y recuerda... \r\nTienes un sue\u00F1o, en SAJACAR te ayudamos a cumplirlo.");
 		dtrpnBienvenidoEstaEs.setBounds(10, 60, 407, 82);
 		panel.add(dtrpnBienvenidoEstaEs);
 
@@ -92,6 +94,7 @@ public class Ventana_opciones extends JPanel {
 		panel.add(btnNewButton);
 
 		JButton btnCatalogo = new JButton("CATALOGO");
+		btnCatalogo.setForeground(Color.BLACK);
 		btnCatalogo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				vc = new ventana_catalogo(vo);
@@ -106,14 +109,31 @@ public class Ventana_opciones extends JPanel {
 		panel.add(btnCatalogo);
 
 		JButton btnComprar = new JButton("COMPRAR");
+		btnComprar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				proximamente px = new proximamente();
+				px.show();
+			}
+		});
 		btnComprar.setFont(new Font("Century Gothic", Font.BOLD | Font.ITALIC, 20));
 		btnComprar.setBounds(20, 313, 178, 39);
 		panel.add(btnComprar);
 
 		JButton btnVender = new JButton("VENDER");
+		btnVender.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				proximamente pt = new proximamente();
+				pt.show();
+			}
+		});
 		btnVender.setFont(new Font("Century Gothic", Font.BOLD | Font.ITALIC, 20));
 		btnVender.setBounds(20, 375, 178, 39);
 		panel.add(btnVender);
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon(Ventana_opciones.class.getResource("/Resources/logo300.png")));
+		lblNewLabel.setBounds(162, 175, 239, 239);
+		panel.add(lblNewLabel);
 
 		vo=this;
 	}

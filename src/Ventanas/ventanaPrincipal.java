@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import java.awt.Color;
 
 public class ventanaPrincipal extends JFrame  {
 
@@ -33,6 +34,7 @@ public class ventanaPrincipal extends JFrame  {
 	 * Create the frame.
 	 */
 	public ventanaPrincipal() {
+		setBackground(Color.WHITE);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 492, 537);
 		contentPane = new JPanel();

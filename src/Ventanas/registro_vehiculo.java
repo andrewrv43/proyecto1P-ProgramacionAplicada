@@ -62,17 +62,20 @@ public class registro_vehiculo extends JPanel {
 	 * Create the panel.
 	 */
 	public registro_vehiculo(Ventana_opciones vo) {
+		setBackground(Color.WHITE);
 		setLayout(null);
 
 		JPanel panel = new JPanel();
-		panel.setBorder(new MatteBorder(4, 3, 1, 1, (Color) new Color(0, 0, 0)));
-		panel.setBounds(10, 10, 573, 661);
+		panel.setBackground(Color.WHITE);
+		panel.setBorder(new MatteBorder(6, 3, 2, 2, (Color) new Color(0, 0, 0)));
+		panel.setBounds(10, 10, 560, 659);
 		add(panel);
 		panel.setLayout(null);
 
 		JLabel lblNewLabel = new JLabel("Registro Vehiculo");
-		lblNewLabel.setFont(new Font("Century Gothic", Font.BOLD | Font.ITALIC, 19));
-		lblNewLabel.setBounds(215, 22, 189, 27);
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setFont(new Font("Century Gothic", Font.BOLD | Font.ITALIC, 35));
+		lblNewLabel.setBounds(109, 10, 351, 52);
 		panel.add(lblNewLabel);
 
 		JLabel lblTipo = new JLabel("TIPO:");
@@ -81,7 +84,9 @@ public class registro_vehiculo extends JPanel {
 		panel.add(lblTipo);
 
 		JRadioButton btn_TNuevo = new JRadioButton("   NUEVO");
+		btn_TNuevo.setBackground(Color.WHITE);
 		JRadioButton rdbtnUsado = new JRadioButton("  USADO");
+		rdbtnUsado.setBackground(Color.WHITE);
 		rdbtnUsado.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(rdbtnUsado.isSelected()) {
@@ -198,6 +203,7 @@ public class registro_vehiculo extends JPanel {
 		panel.add(lblTapiceria);
 
 		JComboBox comboBox = new JComboBox();
+		comboBox.setBackground(Color.BLACK);
 		comboBox.setBounds(273, 522, 210, 21);
 		comboBox.addItem("Cuero");
 		comboBox.addItem("Sintetico");
@@ -209,6 +215,7 @@ public class registro_vehiculo extends JPanel {
 		panel.add(lblCajaDeCambios);
 
 		JComboBox comboBox_1 = new JComboBox();
+		comboBox_1.setBackground(Color.BLACK);
 		comboBox_1.setBounds(273, 559, 210, 21);
 		comboBox_1.addItem("Automatica");
 		comboBox_1.addItem("Manual");
@@ -235,8 +242,9 @@ public class registro_vehiculo extends JPanel {
 		panel.add(in_desc);
 
 		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(Color.WHITE);
 		panel_1.setBorder(new MatteBorder(5, 3, 1, 1, (Color) new Color(0, 0, 0)));
-		panel_1.setBounds(10, 713, 573, 50);
+		panel_1.setBounds(10, 692, 573, 50);
 		add(panel_1);
 		panel_1.setLayout(null);
 
@@ -295,8 +303,8 @@ public class registro_vehiculo extends JPanel {
 		panel_1.add(btn_eliminar);
 
 		JLabel lblOpciones = new JLabel("OPCIONES:");
-		lblOpciones.setFont(new Font("Century Gothic", Font.BOLD | Font.ITALIC, 15));
-		lblOpciones.setBounds(10, 688, 189, 27);
+		lblOpciones.setFont(new Font("Century Gothic", Font.BOLD | Font.ITALIC, 19));
+		lblOpciones.setBounds(10, 670, 189, 27);
 		add(lblOpciones);
 
 	}
