@@ -1,10 +1,10 @@
-AUTO - - VU-456
+AUTO - - VU-460
 Estado:  poner estado
 Marca: ASDA
 Modelo: ASDASD
 Año: 9999
 Kilometraje: 9999
 Precio: 9999
-Descuento: 90
+Descuento: 0
 Color: ASDASD
 Placa: POI-9999

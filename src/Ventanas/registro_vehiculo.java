@@ -17,6 +17,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
+import java.util.ConcurrentModificationException;
 
 import javax.swing.JRadioButton;
 import javax.swing.SwingConstants;
@@ -50,7 +51,8 @@ public class registro_vehiculo extends JPanel {
 	private JTextField in_precio;
 	private JTextField in_color;
 	private JTextField in_placa;
-
+	private boolean edit=false;
+	private String name="";
 
 	private carro c;
 	private ArrayList<File> listIMG = new ArrayList<File>();
@@ -58,6 +60,7 @@ public class registro_vehiculo extends JPanel {
 	public FileNameExtensionFilter filtro = new FileNameExtensionFilter("JPG", "jpg");
 	public JSpinner in_desc = new JSpinner();
 	private Ventana_opciones a = new Ventana_opciones();
+	private int i=0,ind=0;
 	/**
 	 * Create the panel.
 	 */
@@ -251,12 +254,34 @@ public class registro_vehiculo extends JPanel {
 		JButton btn_guardar = new JButton("GUARDAR");
 		btn_guardar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 				validar v=new validar();
 				if(in_codigo.getText().isEmpty() || in_marca.getText().isEmpty() || in_modelo.getText().isEmpty() || in_anio.getText().isEmpty() ||
 						in_kilome.getText().isEmpty() || in_precio.getText().isEmpty() || in_color.getText().isEmpty() || in_placa.getText().isEmpty()) {
 					System.out.println("DATOS EN BLANCO");
 				}else {
 					if(v.validate(in_codigo.getText(),in_marca.getText(),in_anio.getText(),in_kilome.getText(),in_precio.getText(),in_color.getText(),in_placa.getText())){
+						if(edit==true) {
+							for(carro k:vo.listC) {
+								if(k.codigo.equals(name)) {
+									try {
+										del("src/catalogo/"+vo.listC.get(ind).getCodigo());
+										
+									} catch (IOException e1) {
+										// TODO Auto-generated catch block
+										e1.printStackTrace();
+									}
+									catch (ConcurrentModificationException e1) {
+										System.out.println("EDITED FILES");
+									}
+									File borrar=new File("src/catalogo/"+vo.listC.get(ind).getCodigo());
+									borrar.delete();
+									
+									vo.listC.remove(ind);
+								}
+							}
+							edit=false;
+						}
 						c = new carro(in_codigo.getText(),
 								in_marca.getText(),
 								in_modelo.getText(),
@@ -286,13 +311,49 @@ public class registro_vehiculo extends JPanel {
 						System.out.println("DATOS MAL INGRESADOS");
 				}
 				vo.exp();
+			
 			}
 		});
 		btn_guardar.setFont(new Font("Century Gothic", Font.ITALIC, 15));
 		btn_guardar.setBounds(10, 10, 115, 30);
 		panel_1.add(btn_guardar);
 
-		JButton btn_subir = new JButton("SUBIR");
+		JButton btn_subir = new JButton("EDITAR");
+		btn_subir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				validar va=new validar();
+				showEdit sh=new showEdit();
+				sh.setVisible(true);
+				sh.okButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						if(va.vCodigo(sh.inCode.getText())) {
+							i=0;
+							for(carro a:vo.listC) {
+								if(a.getCodigo().equals(sh.inCode.getText())) {
+									ind=i;
+								}
+								i++;
+							}
+							
+							in_marca.setText(vo.listC.get(ind).getMarca());
+							in_codigo.setText(vo.listC.get(ind).getCodigo());
+							in_precio.setText( vo.listC.get(ind).getPrecio());
+							in_anio.setText(String.valueOf(vo.listC.get(ind).year));
+							in_color.setText(vo.listC.get(ind).color);
+							in_kilome.setText(String.valueOf(vo.listC.get(ind).kilometraje));
+							in_modelo.setText(vo.listC.get(ind).getModelo());
+							in_placa.setText(vo.listC.get(ind).placa);
+							comboBox_1.setSelectedIndex(1);
+							edit=true;
+							name=vo.listC.get(ind).getCodigo();
+							sh.setVisible(false);
+						}
+					}
+				});
+			}
+			
+		});
 		btn_subir.setFont(new Font("Century Gothic", Font.ITALIC, 15));
 		btn_subir.setBounds(230, 10, 115, 30);
 		panel_1.add(btn_subir);
@@ -355,7 +416,25 @@ public class registro_vehiculo extends JPanel {
 			System.out.println("aca estoy");
 			System.out.println(directorio.getAbsolutePath());
 		}else {
+			
 
 		}
 	}
+	public static void del(String filepath) throws IOException,ConcurrentModificationException { 
+		   File f = new File (filepath); // define la ruta del archivo 
+		   if (f.exists () && f.isDirectory ()) {// determina si es un archivo o un directorio 
+		    if (f.listFiles (). length == 0) {// Si no hay archivos en el directorio, elimínelos directamente 
+		    f.delete(); 
+		    } else {// Si lo hay, coloque el archivo en la matriz y determine si hay un directorio subordinado 
+		    File delFile[] = f.listFiles(); 
+		    int i = f.listFiles().length; 
+		    for (int j = 0; j < i; j++) { 
+		     if (delFile[j].isDirectory()) { 
+		       del (delFile [j] .getAbsolutePath ()); // Llame al método del de forma recursiva y obtenga la ruta del subdirectorio 
+		     } 
+		      delFile [j] .delete (); // eliminar un archivo 
+		    } 
+		   } 
+		  } 
+		 }
 }

@@ -149,9 +149,11 @@ public class Ventana_opciones extends JPanel {
 				String rutatxt = ruta + "array.txt";
 				directorio = new File(rutatxt);
 				try {
-					FileWriter archivo = new FileWriter(directorio,true);
+					FileWriter archivo = new FileWriter(directorio);
 					BufferedWriter escribir = new BufferedWriter(archivo);
-					escribir.write("\n"+listC.get(listC.size()-1).getDatos());
+					for(carro a:listC) {
+					escribir.write("\n"+a.getDatos());
+					}
 					escribir.close();
 					archivo.close();
 				} catch (IOException v) {

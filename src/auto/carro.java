@@ -7,13 +7,13 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
 public class carro {
-	private String marca, modelo, color, placa, tapiceria,cjCambios, codigo;
-	private long kilometraje;
-	private int year,descuento;
-	private double precio;
-	private gestionImagen img;
-	private int contador = 1,width,height;
-	private int contadorArchivo = 1;
+	public String marca, modelo, color, placa, tapiceria,cjCambios, codigo;
+	public long kilometraje;
+	public int year,descuento;
+	public double precio;
+	public gestionImagen img;
+	public int contador = 1,width,height;
+	public int contadorArchivo = 1;
 
 	public carro(String codigo, String marca, String modelo, String color, String placa, String tapiceria,
 			String cjCambios, long kilometraje,int year, int descuento,double precio, int width, int height) {
@@ -34,7 +34,8 @@ public class carro {
 		img = new gestionImagen(width, height);
 	}
 	public String getPrecio() {
-		return String.valueOf(precio);
+		int p=(int)Math.round(precio);
+		return String.valueOf(p);
 	}
 
 	public String getDatos() {
