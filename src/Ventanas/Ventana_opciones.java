@@ -131,7 +131,7 @@ public class Ventana_opciones extends JPanel {
 				try {
 					FileWriter archivo = new FileWriter(directorio,true);
 					BufferedWriter escribir = new BufferedWriter(archivo);
-					escribir.write(listC.get(listC.size()-1).getDatos());
+					escribir.write("\n"+listC.get(listC.size()-1).getDatos());
 					escribir.close();
 					archivo.close();
 				} catch (IOException v) {
@@ -140,6 +140,18 @@ public class Ventana_opciones extends JPanel {
 				}
 			}
 		}else {
+			String rutatxt = ruta + "array.txt";
+			directorio = new File(rutatxt);
+			try {
+				FileWriter archivo = new FileWriter(directorio,true);
+				BufferedWriter escribir = new BufferedWriter(archivo);
+				escribir.write("\n"+listC.get(listC.size()-1).getDatos());
+				escribir.close();
+				archivo.close();
+			} catch (IOException v) {
+				// TODO Auto-generated catch block
+				v.printStackTrace();
+			}
 
 		}
 	}

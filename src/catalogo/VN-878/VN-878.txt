@@ -1,0 +1,10 @@
+AUTO - - VN-878
+Estado:  poner estado
+Marca: ASKDJASD
+Modelo: ALSKDASLDK
+Año: 2022
+Kilometraje: 12312312
+Precio: 18000
+Descuento: 10
+Color: AZUL
+Placa: PAF-4332

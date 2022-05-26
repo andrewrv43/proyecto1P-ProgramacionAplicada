@@ -1,0 +1,10 @@
+AUTO - - VN-789
+Estado:  poner estado
+Marca: ASDASD
+Modelo: ASDA
+Año: 1980
+Kilometraje: 202020
+Precio: 20000
+Descuento: 10
+Color: AUZSDF
+Placa: PAZ-3212

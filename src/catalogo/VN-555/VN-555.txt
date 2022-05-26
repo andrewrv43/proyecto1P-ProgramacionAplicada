@@ -1,10 +1,10 @@
 AUTO - - VN-555
 Estado:  poner estado
-Marca: AVEO
-Modelo: EMOTION
-Año: 2002
-Kilometraje: 50000
-Precio: 20000
+Marca: ASDASD
+Modelo: ASDAS
+Año: 2022
+Kilometraje: 2131231
+Precio: 12312
 Descuento: 10
-Color: ROJO
-Placa: PBD-5678
+Color: ASDASDA
+Placa: PIU-6789
