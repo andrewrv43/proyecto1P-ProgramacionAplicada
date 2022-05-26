@@ -1,5 +1,6 @@
 AUTO - - VU-999
 Estado:  poner estado
+<<<<<<< HEAD
 Marca: LOLOLOL
 Modelo: LOLOLOL
 Año: 2021
@@ -8,3 +9,13 @@ Precio: 123
 Descuento: 20
 Color: AZUL
 Placa: PCN-3297
+=======
+Marca: ADR
+Modelo: DLO
+Año: 2015
+Kilometraje: 145
+Precio: 4563
+Descuento: 10
+Color: PESO
+Placa: AEI-7895
+>>>>>>> 3991199a4263f4e4fe2cc52cf7b9ac79d3cdf87e

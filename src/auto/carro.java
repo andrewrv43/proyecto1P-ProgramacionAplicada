@@ -43,12 +43,27 @@ public class carro {
 
 	}
 	public Icon iniciar() {
+		contador = 1;
 		return img.iniciar(contador, codigo);
 	}
 	public Icon siguiente() {
+		File directorio = new File("src/catalogo/"+ codigo + "/img");
+		File[] nimg = directorio.listFiles();
+		if(contador >= nimg.length){
+			contador = 1;
+		}else {
+			contador ++;
+		}
 		return img.siguiente(contador, codigo);
 	}
 	public Icon anterior() {
+		File directorio = new File("src/catalogo/"+ codigo + "/img");
+		File[] nimg = directorio.listFiles();
+		if(contador <= 1){
+			contador = nimg.length;
+		}else {
+			contador --;
+		}
 		return img.anterior(contador, codigo);
 	}
 	public gestionImagen getIMG() {

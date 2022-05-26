@@ -151,6 +151,12 @@ public class ventana_catalogo extends JPanel {
 		panel_1.add(out_image);
 
 		JButton btn_añadirimg = new JButton("More images");
+		btn_añadirimg.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				imagenesCarrusel ca = new imagenesCarrusel(vt.listC.get(cont));
+				ca.show();
+			}
+		});
 		btn_añadirimg.setFont(new Font("Century Gothic", Font.BOLD, 20));
 		btn_añadirimg.setBounds(283, 485, 201, 51);
 		panel.add(btn_añadirimg);
@@ -189,7 +195,6 @@ public class ventana_catalogo extends JPanel {
 				out_modelo.setText(vt.listC.get(cont).getModelo());
 				out_precio_venta.setText(vt.listC.get(cont).getPrecio());
 				out_image.setIcon(vt.listC.get(cont).iniciar());
-
 			}
 		});
 		btn_siguiente.setBounds(653, 221, 85, 86);

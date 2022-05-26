@@ -1,0 +1,10 @@
+AUTO - - VU-666
+Estado:  poner estado
+Marca: AGS
+Modelo: SHJD
+Año: 1234
+Kilometraje: 456
+Precio: 45
+Descuento: 60
+Color: LEOS
+Placa: SDF-7895
