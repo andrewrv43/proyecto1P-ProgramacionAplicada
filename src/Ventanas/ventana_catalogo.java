@@ -9,6 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JPasswordField;
 import javax.swing.JTextArea;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JSeparator;
 import javax.swing.JSpinner;
 import javax.swing.JToggleButton;
@@ -94,10 +95,10 @@ public class ventana_catalogo extends JPanel {
 					}
 				}
 				else {
-					System.out.println("FORMATO DE CODIGO NO CORRECTO");
+					ventans("FORMATO DE CODIGO NO CORRECTO");
 				}
 				if(!enc) {
-					System.out.println("NO SE ENCONTRO LA BUSQUEDA");
+					ventans("NO SE ENCONTRO LA BUSQUEDA");
 				}
 			}
 		});
@@ -171,7 +172,6 @@ public class ventana_catalogo extends JPanel {
 		btn_atras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(cont <= 0){
-					System.out.println(vt.listC.size());
 					cont = vt.listC.size()-1;
 				}else {
 					cont --;
@@ -184,7 +184,7 @@ public class ventana_catalogo extends JPanel {
 
 			}
 		});
-		btn_atras.setBounds(23, 221, 85, 86);
+		btn_atras.setBounds(46, 229, 69, 71);
 		panel.add(btn_atras);
 		btn_atras.setFont(new Font("Century Gothic", Font.BOLD, 30));
 
@@ -203,14 +203,9 @@ public class ventana_catalogo extends JPanel {
 				out_image.setIcon(vt.listC.get(cont).iniciar());
 			}
 		});
-		btn_siguiente.setBounds(653, 221, 85, 86);
+		btn_siguiente.setBounds(647, 229, 69, 71);
 		panel.add(btn_siguiente);
 		btn_siguiente.setFont(new Font("Century Gothic", Font.BOLD, 30));
-
-		System.out.println("aaa");
-		for (carro carro : vt.listC) {
-			System.out.print(carro.getCodigo());
-		}
 
 		out_codigo.setText(vt.listC.get(cont).getCodigo());
 		out_marca.setText(vt.listC.get(cont).getMarca());
@@ -218,5 +213,8 @@ public class ventana_catalogo extends JPanel {
 		out_precio_venta.setText(vt.listC.get(cont).getPrecio());
 		out_image.setIcon(vt.listC.get(cont).iniciar());
 
+	}
+	public void ventans(String text) {
+		JOptionPane.showMessageDialog(this, text);
 	}
 }

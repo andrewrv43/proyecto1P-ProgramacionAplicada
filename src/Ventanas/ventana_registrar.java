@@ -148,8 +148,6 @@ public class ventana_registrar extends JPanel {
 
 					String[] s1 = b.split(";");
 					if(pass.equals(s1[1])&&user.equals(s1[0])) {
-						System.out.println("ACEPTADO");
-						
 						return true;
 					}
 					//System.out.println(s1[0] + " " + s1[1]);
@@ -159,11 +157,9 @@ public class ventana_registrar extends JPanel {
 
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
-				System.out.println("malo 1");
 			}
 		} catch (FileNotFoundException e1) {
 			// TODO Auto-generated catch 
-			System.out.println("malo");
 		}
 		return false;
 

@@ -1,0 +1,10 @@
+AUTO - - VU-589
+Estado:  poner estado
+Marca: FORD
+Modelo: F150
+Año: 2020
+Kilometraje: 145
+Precio: 1455
+Descuento: 10
+Color: NEGRO
+Placa: ASP-789

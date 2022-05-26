@@ -29,10 +29,8 @@ public class gestionImagen {
 	public boolean guardarImagen(File ar, int contadorArchivo, String codigo) {
 
 		File archivo = ar;
-		
 		//verificamos seleccion de archivo
 		if(archivo != null) {
-
 			try {
 				//destino
 				String des = "src/catalogo/" + codigo + "/img/" + contadorArchivo +".jpg";
@@ -43,14 +41,11 @@ public class gestionImagen {
 				Path origen = Paths.get(ori);
 
 				//copia
-
 				Files.copy(origen, destino, StandardCopyOption.REPLACE_EXISTING);
-				//JOptionPane.showMessageDialog(this, "ARCHIVO GUARDADO");
 				contadorArchivo++;
 				return true;
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
-				//JOptionPane.showMessageDialog(this, "NO SE PUEDO GUARDAR EL ARCHIVO");
 				e.printStackTrace();
 				return false;
 			}		
@@ -58,7 +53,7 @@ public class gestionImagen {
 			return false;
 		}
 	}
-	
+
 	public Icon iniciar(int contador, String codigo) {
 		image = new ImageIcon("src/catalogo/" + codigo + "/img/" + contador +".jpg");
 		return im = new ImageIcon(image.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH));

@@ -30,7 +30,6 @@ public class carro {
 		this.precio=precio;
 		this.width=width;
 		this.height=height;
-		//datos para las imagenes
 		img = new gestionImagen(width, height);
 	}
 	public String getPrecio() {

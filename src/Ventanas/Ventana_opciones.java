@@ -2,6 +2,8 @@ package Ventanas;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
@@ -140,11 +142,8 @@ public class Ventana_opciones extends JPanel {
 	public void add(carro d) {
 		listC.add(d);
 	}
-	//PENDIENTE
 	public void exp() {
-		for (carro carro : listC) {
-			System.out.println(carro.getCodigo() + "\n");
-		}
+
 		String ruta = "src/DATA/";
 		File directorio = new File(ruta);
 		if(!directorio.exists()) {
@@ -201,18 +200,16 @@ public class Ventana_opciones extends JPanel {
 							s1[5],s1[6],Long.parseLong(s1[7]),Integer.parseInt(s1[8]),
 							Integer.parseInt(s1[9]),Double.parseDouble(s1[10]),
 							Integer.parseInt(s1[11]),Integer.parseInt(s1[12])));
-					//System.out.println(s1[0] + " " + s1[1]);
 					b=br.readLine();
 				}
 
 
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
-				System.out.println("malo 1");
 			}
 		} catch (FileNotFoundException e1) {
 			// TODO Auto-generated catch 
-			System.out.println("SI ES LA PRIMERA VEZ QUE ABRE EL PROGRAMA POR FAVOR AÑADA UN AUTO PRIMERO");
+			JOptionPane.showMessageDialog(this,"SI ES LA PRIMERA VEZ QUE ABRE EL PROGRAMA POR FAVOR AÑADA UN AUTO PRIMERO" );
 		}
 
 

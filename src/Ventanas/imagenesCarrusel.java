@@ -78,7 +78,6 @@ public class imagenesCarrusel extends JDialog {
 		btnSiguient.setFont(new Font("Century Gothic", Font.BOLD, 18));
 		btnSiguient.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-	
 				outImagen.setIcon(list.siguiente());
 			}
 		});

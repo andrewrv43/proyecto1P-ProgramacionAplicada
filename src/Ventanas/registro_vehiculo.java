@@ -261,7 +261,7 @@ public class registro_vehiculo extends JPanel {
 				validar v=new validar();
 				if(in_codigo.getText().isEmpty() || in_marca.getText().isEmpty() || in_modelo.getText().isEmpty() || in_anio.getText().isEmpty() ||
 						in_kilome.getText().isEmpty() || in_precio.getText().isEmpty() || in_color.getText().isEmpty() || in_placa.getText().isEmpty()) {
-					System.out.println("DATOS EN BLANCO");
+					ventans("ERROR: DATOS EN BLANCO");
 				}else {
 					if(v.validate(in_codigo.getText(),in_marca.getText(),in_anio.getText(),in_kilome.getText(),in_precio.getText(),in_color.getText(),in_placa.getText())){
 						if(edit==true) {
@@ -275,7 +275,7 @@ public class registro_vehiculo extends JPanel {
 										e1.printStackTrace();
 									}
 									catch (ConcurrentModificationException e1) {
-										System.out.println("EDITED FILES");
+										ventans("EDITED FILES");
 									}
 									File borrar=new File("src/catalogo/"+vo.listC.get(ind).getCodigo());
 									borrar.delete();
@@ -312,10 +312,19 @@ public class registro_vehiculo extends JPanel {
 						listIMG.clear();
 					}
 					else
-						System.out.println("DATOS MAL INGRESADOS");
+						ventans("ERROR: DATOS MAL INGRESADOS");
 				}
 				vo.exp();
-
+				ventans("VEHICULO GUARDADO CON EXITO");
+				in_codigo.setText("");
+				in_anio.setText("");
+				in_color.setText("");
+				in_desc.setValue(0);
+				in_kilome.setText("");
+				in_marca.setText("");
+				in_modelo.setText("");
+				in_placa.setText("");
+				in_precio.setText("");
 			}
 		});
 		btn_guardar.setFont(new Font("Century Gothic", Font.ITALIC, 15));
@@ -385,17 +394,15 @@ public class registro_vehiculo extends JPanel {
 							}
 							try {
 								if(encontrado) {
-									
+
 									del("src/catalogo/" + vo.listC.get(ind).getCodigo()) ;
 									File a = new File("src/catalogo/" + vo.listC.get(ind).getCodigo());
 									a.delete();
 									vo.listC.remove(ind);
 									vo.exp();
-										
-									
 
 								}else {
-									System.out.println("No esta en lista");
+									ventans("ERROR: El codigo no esta dentro de la lista");
 								}
 
 							} catch (ConcurrentModificationException e1) {
@@ -410,13 +417,6 @@ public class registro_vehiculo extends JPanel {
 				});
 
 			}
-
-
-
-
-
-
-
 		});
 		btn_eliminar.setFont(new Font("Century Gothic", Font.ITALIC, 15));
 		btn_eliminar.setBounds(448, 10, 115, 30);
@@ -472,8 +472,6 @@ public class registro_vehiculo extends JPanel {
 					}
 				}
 			}
-			System.out.println("aca estoy");
-			System.out.println(directorio.getAbsolutePath());
 		}else {
 
 
@@ -495,5 +493,8 @@ public class registro_vehiculo extends JPanel {
 				} 
 			} 
 		} 
+	}
+	public void ventans(String text) {
+		JOptionPane.showMessageDialog(this, text);
 	}
 }
