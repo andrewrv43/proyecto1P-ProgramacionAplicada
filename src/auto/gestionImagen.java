@@ -16,9 +16,9 @@ import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class gestionImagen {
-	//private JFileChooser ventana = new JFileChooser("");
-	private FileNameExtensionFilter filtro = new FileNameExtensionFilter("JPG", "jpg");
+
 	private ImageIcon image = new ImageIcon();
+	@SuppressWarnings("unused")
 	private Icon im;
 	private int width, height;
 	public gestionImagen(int width, int height) {
@@ -27,8 +27,7 @@ public class gestionImagen {
 	}
 
 	public boolean guardarImagen(File ar, int contadorArchivo, String codigo) {
-		/*ventana.setFileFilter(filtro);
-		ventana.showOpenDialog(this);*/
+
 		File archivo = ar;
 		
 		//verificamos seleccion de archivo
@@ -65,24 +64,11 @@ public class gestionImagen {
 		return im = new ImageIcon(image.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH));
 	}
 	public Icon siguiente(int contador, String codigo) {
-		File directorio = new File("src/catalogo/"+ codigo + "/img");
-		File[] nimg = directorio.listFiles();
-		if(contador >= nimg.length){
-			contador = 1;
-		}else {
-			contador ++;
-		}
 		image = new ImageIcon("src/catalogo/" + codigo + "/img/" + contador +".jpg");
 		return im = new ImageIcon(image.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH));
 	}
 	public Icon anterior(int contador, String codigo) {
-		File directorio = new File("src/catalogo"+ codigo + "/img");
-		File[] nimg = directorio.listFiles();
-		if(contador <= 1){
-			contador = nimg.length;
-		}else {
-			contador --;
-		}
+
 		image = new ImageIcon("src/catalogo/" + codigo + "/img/" + contador +".jpg");
 		return im = new ImageIcon(image.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH));
 	}

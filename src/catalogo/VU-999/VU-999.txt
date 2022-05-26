@@ -1,0 +1,10 @@
+AUTO - - VU-999
+Estado:  poner estado
+Marca: ADR
+Modelo: DLO
+Año: 2015
+Kilometraje: 145
+Precio: 4563
+Descuento: 10
+Color: PESO
+Placa: AEI-7895

@@ -1,0 +1,10 @@
+AUTO - - VN-145
+Estado:  poner estado
+Marca: ASF
+Modelo: SF
+Año: 2145
+Kilometraje: 545
+Precio: 45
+Descuento: 10
+Color: AZUL
+Placa: APO-8745
