@@ -1,0 +1,10 @@
+AUTO - - VN-444
+Estado:  poner estado
+Marca: ASDF
+Modelo: A
+Año: 1234
+Kilometraje: 1
+Precio: 1
+Descuento: 10
+Color: SD
+Placa: ASD-789

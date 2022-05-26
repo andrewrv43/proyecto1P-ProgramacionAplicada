@@ -142,17 +142,23 @@ public class Ventana_opciones extends JPanel {
 	}
 	//PENDIENTE
 	public void exp() {
+		for (carro carro : listC) {
+			System.out.println(carro.getCodigo() + "\n");
+		}
 		String ruta = "src/DATA/";
 		File directorio = new File(ruta);
 		if(!directorio.exists()) {
 			if(directorio.mkdir()) {
 				String rutatxt = ruta + "array.txt";
 				directorio = new File(rutatxt);
+				directorio.delete();
+				directorio = new File(rutatxt);
+
 				try {
-					FileWriter archivo = new FileWriter(directorio);
+					FileWriter archivo = new FileWriter(directorio, false);
 					BufferedWriter escribir = new BufferedWriter(archivo);
 					for(carro a:listC) {
-					escribir.write("\n"+a.getDatos());
+					escribir.write(a.getDatos() + "\n");
 					}
 					escribir.close();
 					archivo.close();
