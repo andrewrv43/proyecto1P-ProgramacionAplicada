@@ -281,6 +281,7 @@ public class registro_vehiculo extends JPanel {
 									borrar.delete();
 
 									vo.listC.remove(ind);
+									break;
 								}
 							}
 							edit=false;

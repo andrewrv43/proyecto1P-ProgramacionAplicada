@@ -151,15 +151,14 @@ public class Ventana_opciones extends JPanel {
 			if(directorio.mkdir()) {
 				String rutatxt = ruta + "array.txt";
 				directorio = new File(rutatxt);
-				directorio.delete();
-				directorio = new File(rutatxt);
-
 				try {
-					FileWriter archivo = new FileWriter(directorio, false);
+					FileWriter archivo = new FileWriter(directorio);
 					BufferedWriter escribir = new BufferedWriter(archivo);
+					String d="";
 					for(carro a:listC) {
-					escribir.write(a.getDatos() + "\n");
+					d+=a.getDatos()+"\n";
 					}
+					escribir.write(d);
 					escribir.close();
 					archivo.close();
 				} catch (IOException v) {
@@ -171,9 +170,13 @@ public class Ventana_opciones extends JPanel {
 			String rutatxt = ruta + "array.txt";
 			directorio = new File(rutatxt);
 			try {
-				FileWriter archivo = new FileWriter(directorio,true);
+				FileWriter archivo = new FileWriter(directorio,false);
 				BufferedWriter escribir = new BufferedWriter(archivo);
-				escribir.write("\n"+listC.get(listC.size()-1).getDatos());
+				String b="";
+				for(carro a:listC) {
+					b+=a.getDatos()+"\n";
+					}
+				escribir.write(b);
 				escribir.close();
 				archivo.close();
 			} catch (IOException v) {
