@@ -6,6 +6,8 @@ import java.io.File;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
+import Ventanas.Ventana_opciones;
+
 public class carro {
 	public String marca, modelo, color, placa, tapiceria,cjCambios, codigo;
 	public long kilometraje;
@@ -47,7 +49,7 @@ public class carro {
 		return img.iniciar(contador, codigo);
 	}
 	public Icon siguiente() {
-		File directorio = new File("src/catalogo/"+ codigo + "/img");
+		File directorio = new File(Ventana_opciones.pathHome + "SAJACAR/catalogo/"+ codigo + "/img");
 		File[] nimg = directorio.listFiles();
 		if(contador >= nimg.length){
 			contador = 1;
@@ -57,7 +59,7 @@ public class carro {
 		return img.siguiente(contador, codigo);
 	}
 	public Icon anterior() {
-		File directorio = new File("src/catalogo/"+ codigo + "/img");
+		File directorio = new File(Ventana_opciones.pathHome + "SAJACAR/catalogo/"+ codigo + "/img");
 		File[] nimg = directorio.listFiles();
 		if(contador <= 1){
 			contador = nimg.length;

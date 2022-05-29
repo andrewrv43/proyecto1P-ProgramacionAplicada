@@ -30,6 +30,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.FileSystem;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
@@ -43,12 +44,14 @@ public class Ventana_opciones extends JPanel {
 	private ventana_catalogo vc;
 	private Ventana_opciones vo;
 	public ArrayList<carro> listC = new ArrayList<carro>();
-
+	public static String pathHome = System.getProperty("user.home") + "\\Documents\\";
 	public JButton btnNewButton = new JButton("REGISTRAR");
 	public Ventana_opciones() {
 		setBackground(Color.WHITE);
 		setLayout(null);
+		crearCarpeta(pathHome);
 		imp();
+		
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.WHITE);
 		panel.setBorder(new MatteBorder(5, 3, 1, 1, (Color) new Color(0, 0, 0)));
@@ -142,9 +145,27 @@ public class Ventana_opciones extends JPanel {
 	public void add(carro d) {
 		listC.add(d);
 	}
+	public void crearCarpeta(String path) {
+		String nom = "SAJACAR";
+		File directorio = new File(path + nom);
+		if(!directorio.exists()) {
+			if(directorio.mkdir()) {
+				try {
+					FileWriter archivo = new FileWriter(directorio + "/datos.txt");
+					BufferedWriter escribir = new BufferedWriter(archivo);
+					escribir.write("admin;admin1234");
+					escribir.close();
+					archivo.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+	}
 	public void exp() {
-
-		String ruta = "src/DATA/";
+		
+		String ruta = pathHome + "SAJACAR\\DATA\\";
 		File directorio = new File(ruta);
 		if(!directorio.exists()) {
 			if(directorio.mkdir()) {
@@ -189,7 +210,7 @@ public class Ventana_opciones extends JPanel {
 		String b="";
 		BufferedReader br;
 		try {
-			FileReader lect=new FileReader ("src/DATA/array.txt");
+			FileReader lect=new FileReader (pathHome + "SAJACAR/DATA/array.txt");
 
 			br = new BufferedReader (lect);
 			try {

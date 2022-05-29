@@ -268,7 +268,7 @@ public class registro_vehiculo extends JPanel {
 							for(carro k:vo.listC) {
 								if(k.codigo.equals(name)) {
 									try {
-										del("src/catalogo/"+vo.listC.get(ind).getCodigo());
+										del( Ventana_opciones.pathHome + "SAJACAR/catalogo/"+vo.listC.get(ind).getCodigo());
 
 									} catch (IOException e1) {
 										// TODO Auto-generated catch block
@@ -277,7 +277,7 @@ public class registro_vehiculo extends JPanel {
 									catch (ConcurrentModificationException e1) {
 										ventans("EDITED FILES");
 									}
-									File borrar=new File("src/catalogo/"+vo.listC.get(ind).getCodigo());
+									File borrar=new File(Ventana_opciones.pathHome + "SAJACAR/catalogo/"+vo.listC.get(ind).getCodigo());
 									borrar.delete();
 
 									vo.listC.remove(ind);
@@ -300,7 +300,7 @@ public class registro_vehiculo extends JPanel {
 								496,
 								194);
 						vo.listC.add(c);
-						String ruta ="src/catalogo";
+						String ruta = Ventana_opciones.pathHome + "SAJACAR/catalogo";
 						File direct=new File(ruta);
 						if(direct.exists()) {
 							crearCarpetas();
@@ -309,6 +309,15 @@ public class registro_vehiculo extends JPanel {
 							direct.mkdir();
 							crearCarpetas();
 						}
+						in_codigo.setText("");
+						in_anio.setText("");
+						in_color.setText("");
+						in_desc.setValue(0);
+						in_kilome.setText("");
+						in_marca.setText("");
+						in_modelo.setText("");
+						in_placa.setText("");
+						in_precio.setText("");
 						listIMG.clear();
 					}
 					else
@@ -316,15 +325,6 @@ public class registro_vehiculo extends JPanel {
 				}
 				vo.exp();
 				ventans("VEHICULO GUARDADO CON EXITO");
-				in_codigo.setText("");
-				in_anio.setText("");
-				in_color.setText("");
-				in_desc.setValue(0);
-				in_kilome.setText("");
-				in_marca.setText("");
-				in_modelo.setText("");
-				in_placa.setText("");
-				in_precio.setText("");
 			}
 		});
 		btn_guardar.setFont(new Font("Century Gothic", Font.ITALIC, 15));
@@ -395,8 +395,8 @@ public class registro_vehiculo extends JPanel {
 							try {
 								if(encontrado) {
 
-									del("src/catalogo/" + vo.listC.get(ind).getCodigo()) ;
-									File a = new File("src/catalogo/" + vo.listC.get(ind).getCodigo());
+									del(Ventana_opciones.pathHome + "SAJACAR/catalogo/" + vo.listC.get(ind).getCodigo()) ;
+									File a = new File(Ventana_opciones.pathHome + "SAJACAR/catalogo/" + vo.listC.get(ind).getCodigo());
 									a.delete();
 									vo.listC.remove(ind);
 									vo.exp();
@@ -438,7 +438,7 @@ public class registro_vehiculo extends JPanel {
 	}
 
 	public void crearCarpetas() {
-		String ruta = "src/catalogo/" + in_codigo.getText() + "/";
+		String ruta = Ventana_opciones.pathHome + "SAJACAR/catalogo/" + in_codigo.getText() + "/";
 		File directorio = new File(ruta);
 		if(!directorio.exists()) {
 			if(directorio.mkdir()) {

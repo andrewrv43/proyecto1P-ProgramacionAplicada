@@ -15,6 +15,8 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+import Ventanas.Ventana_opciones;
+
 public class gestionImagen {
 
 	private ImageIcon image = new ImageIcon();
@@ -33,7 +35,7 @@ public class gestionImagen {
 		if(archivo != null) {
 			try {
 				//destino
-				String des = "src/catalogo/" + codigo + "/img/" + contadorArchivo +".jpg";
+				String des = Ventana_opciones.pathHome + "SAJACAR/catalogo/" + codigo + "/img/" + contadorArchivo +".jpg";
 				Path destino = Paths.get(des);
 
 				//origen
@@ -55,16 +57,16 @@ public class gestionImagen {
 	}
 
 	public Icon iniciar(int contador, String codigo) {
-		image = new ImageIcon("src/catalogo/" + codigo + "/img/" + contador +".jpg");
+		image = new ImageIcon(Ventana_opciones.pathHome + "SAJACAR/catalogo/" + codigo + "/img/" + contador +".jpg");
 		return im = new ImageIcon(image.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH));
 	}
 	public Icon siguiente(int contador, String codigo) {
-		image = new ImageIcon("src/catalogo/" + codigo + "/img/" + contador +".jpg");
+		image = new ImageIcon(Ventana_opciones.pathHome + "SAJACAR/catalogo/" + codigo + "/img/" + contador +".jpg");
 		return im = new ImageIcon(image.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH));
 	}
 	public Icon anterior(int contador, String codigo) {
 
-		image = new ImageIcon("src/catalogo/" + codigo + "/img/" + contador +".jpg");
+		image = new ImageIcon(Ventana_opciones.pathHome + "SAJACAR/catalogo/" + codigo + "/img/" + contador +".jpg");
 		return im = new ImageIcon(image.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH));
 	}
 }

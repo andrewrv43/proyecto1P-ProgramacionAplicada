@@ -141,7 +141,7 @@ public class ventana_registrar extends JPanel {
 		String b="";
 		BufferedReader br;
 		try {
-			br = new BufferedReader (new FileReader ("src/datos.txt"));
+			br = new BufferedReader (new FileReader (Ventana_opciones.pathHome + "SAJACAR/datos.txt"));
 			try {
 				do {
 					b=br.readLine();
