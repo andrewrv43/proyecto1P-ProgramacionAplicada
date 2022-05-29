@@ -1,35 +1,38 @@
 package validaciones;
 
+import javax.swing.JOptionPane;
+
 public class validar {
 	
 	public boolean validate(String cd,String mrc,String y,String k,String p,String col,String pla) {
 
 		if(!vCodigo(cd)) {
-			System.out.println("CODIGO MAL");
+			
+			JOptionPane.showMessageDialog(null, "ERROR(FORMATO): DATOS MAL INGRESADOS\n=>CODIGO");
 			return false;
 		}
 		else if(!vMARCA(mrc)) {
-			System.out.println("marca mal");
+			JOptionPane.showMessageDialog(null, "ERROR(FORMATO): DATOS MAL INGRESADOS\n=>MARCA");
 			return false;
 		}
 		else if(!vYear(y)) {
-			System.out.println("ANIO MAL");
+			JOptionPane.showMessageDialog(null, "ERROR(FORMATO): DATOS MAL INGRESADOS\n=>AÑO ");
 			return false;
 		}
 		else if(!vKilo(k)) {
-			System.out.println("KILOMETRAJE MAL");
+			JOptionPane.showMessageDialog(null, "ERROR(FORMATO): DATOS MAL INGRESADOS\n=>KILOMETRAJE");
 		return false;
 		}
 		else if(!vPrecio(p)) {
-			System.out.println("PRECIO MAL");
+			JOptionPane.showMessageDialog(null, "ERROR(FORMATO): DATOS MAL INGRESADOS\n=>PRECIO");
 			return false;
 		}
 		else if(!vColor(col)) {
-			System.out.println("COLOR MAL");
+			JOptionPane.showMessageDialog(null, "ERROR(FORMATO): DATOS MAL INGRESADOS\n=>COLOR");
 			return false;
 		}
 		else if(!vPlaca(pla)) {
-			System.out.println("PLACA MAL");
+			JOptionPane.showMessageDialog(null, "ERROR(FORMATO): DATOS MAL INGRESADOS\n=>PLACA");
 			return false;
 		}
 		else 

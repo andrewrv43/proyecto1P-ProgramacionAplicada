@@ -319,12 +319,11 @@ public class registro_vehiculo extends JPanel {
 						in_placa.setText("");
 						in_precio.setText("");
 						listIMG.clear();
+						vo.exp();
+						ventans("VEHICULO GUARDADO CON EXITO");
+
 					}
-					else
-						ventans("ERROR: DATOS MAL INGRESADOS");
 				}
-				vo.exp();
-				ventans("VEHICULO GUARDADO CON EXITO");
 			}
 		});
 		btn_guardar.setFont(new Font("Century Gothic", Font.ITALIC, 15));
