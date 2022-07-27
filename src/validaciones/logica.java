@@ -6,8 +6,8 @@ import java.sql.SQLException;
 import libreriaAV.conectionBD;
 
 public class logica {
-	private conectionBD cn = new conectionBD("src/");
-	private ResultSet res;
+	public conectionBD cn = new conectionBD("src/");
+	public ResultSet res;
 	
 	public boolean validarContra(String user, String pass) {
 		res = cn.getQuery("SELECT * FROM usuario");
@@ -27,8 +27,8 @@ public class logica {
 	
 	//CRUD - BASE DE DATOS
 	
-	public boolean createRegister(String cod, String marca, String mod, String col, String plc, String tapiceria, String caja, Long km, int anio, double price) {
-		String sentencia = "INSERT INTO vehiculo(codigo, marca, modelo, anio, kilometraje, precio, color, placa, tapiceria, caja_cambios, tipo) VALUES('" + cod + "', '" + marca + "', '" + mod + "', " + anio + ", " + km + ", " + price + ", '" + col + "', '" + plc + "', '" + tapiceria + "', '" + caja + "', 'Nuevo')";
+	public boolean createRegister(String cod, String marca, String mod, String col, String plc, String tapiceria, String caja, Long km, int anio, double price, String tipo) {
+		String sentencia = "INSERT INTO vehiculo(codigo, marca, modelo, anio, kilometraje, precio, color, placa, tapiceria, caja_cambios, tipo) VALUES('" + cod + "', '" + marca + "', '" + mod + "', " + anio + ", " + km + ", " + price + ", '" + col + "', '" + plc + "', '" + tapiceria + "', '" + caja + "', '" + tipo + "')";
 		return cn.setQuery(sentencia);
 	}
 }

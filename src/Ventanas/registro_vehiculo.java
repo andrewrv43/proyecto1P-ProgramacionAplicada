@@ -19,6 +19,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
 
@@ -57,7 +58,7 @@ public class registro_vehiculo extends JPanel {
 	private JTextField in_placa;
 	private boolean edit=false;
 	private String name="";
-
+	private JRadioButton btn_TNuevo, rdbtnUsado;
 	private carro c;
 	private ArrayList<File> listIMG = new ArrayList<File>();
 	public JFileChooser ventana = new JFileChooser("");
@@ -66,7 +67,7 @@ public class registro_vehiculo extends JPanel {
 	//private Ventana_opciones a = new Ventana_opciones();
 	private int i=0,ind=0;
 	private logica lg = new logica();
-	
+
 	/**
 	 * Create the panel.
 	 */
@@ -77,7 +78,7 @@ public class registro_vehiculo extends JPanel {
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.WHITE);
 		panel.setBorder(new MatteBorder(6, 3, 2, 2, (Color) new Color(0, 0, 0)));
-		panel.setBounds(10, 10, 560, 659);
+		panel.setBounds(10, 10, 560, 630);
 		add(panel);
 		panel.setLayout(null);
 
@@ -92,9 +93,9 @@ public class registro_vehiculo extends JPanel {
 		lblTipo.setBounds(10, 75, 62, 27);
 		panel.add(lblTipo);
 
-		JRadioButton btn_TNuevo = new JRadioButton("   NUEVO");
+		btn_TNuevo = new JRadioButton("   NUEVO");
 		btn_TNuevo.setBackground(Color.WHITE);
-		JRadioButton rdbtnUsado = new JRadioButton("  USADO");
+		rdbtnUsado = new JRadioButton("  USADO");
 		rdbtnUsado.setBackground(Color.WHITE);
 		rdbtnUsado.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -233,7 +234,7 @@ public class registro_vehiculo extends JPanel {
 		JLabel lblImagenes = new JLabel("IM\u00C1GENES:");
 		lblImagenes.setHorizontalAlignment(SwingConstants.CENTER);
 		lblImagenes.setFont(new Font("Century Gothic", Font.BOLD, 16));
-		lblImagenes.setBounds(109, 614, 154, 27);
+		lblImagenes.setBounds(109, 593, 154, 27);
 		panel.add(lblImagenes);
 
 		JButton btn_agregar = new JButton("A\u00D1ADIR");
@@ -243,7 +244,7 @@ public class registro_vehiculo extends JPanel {
 			}
 		});
 		btn_agregar.setFont(new Font("Century Gothic", Font.ITALIC, 12));
-		btn_agregar.setBounds(273, 612, 131, 34);
+		btn_agregar.setBounds(273, 591, 131, 34);
 		panel.add(btn_agregar);
 
 
@@ -253,7 +254,7 @@ public class registro_vehiculo extends JPanel {
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(Color.WHITE);
 		panel_1.setBorder(new MatteBorder(5, 3, 1, 1, (Color) new Color(0, 0, 0)));
-		panel_1.setBounds(10, 692, 573, 50);
+		panel_1.setBounds(10, 651, 573, 50);
 		add(panel_1);
 		panel_1.setLayout(null);
 
@@ -268,6 +269,9 @@ public class registro_vehiculo extends JPanel {
 				}else {
 					if(v.validate(in_codigo.getText(),in_marca.getText(),in_anio.getText(),in_kilome.getText(),in_precio.getText(),in_color.getText(),in_placa.getText())){
 						if(edit==true) {
+							//BORRAR DE LA BASE DE DATOS EL REGISTRO A EDITAR Y VOLVER A INSERTARLO
+							lg.cn.setQuery("DELETE FROM vehiculo WHERE codigo = '" + name + "'");
+
 							for(carro k:vo.listC) {
 								if(k.codigo.equals(name)) {
 									try {
@@ -303,6 +307,8 @@ public class registro_vehiculo extends JPanel {
 								496,
 								194);
 						vo.listC.add(c);
+
+						//AQUI MANDA A LA BASE DE DATOS
 						if(lg.createRegister(in_codigo.getText(),
 								in_marca.getText(),
 								in_modelo.getText(),
@@ -312,12 +318,13 @@ public class registro_vehiculo extends JPanel {
 								(String)comboBox_1.getSelectedItem(),
 								Long.parseLong(in_kilome.getText()),
 								Integer.parseInt(in_anio.getText()),
-								Double.parseDouble(in_precio.getText()))) {
+								Double.parseDouble(in_precio.getText()),
+								seleccion())) {
 							System.out.println("creado");
 						}else {
 							System.out.println("no creado");
 						}
-						
+
 						String ruta = Ventana_opciones.pathHome + "SAJACAR/catalogo";
 						File direct=new File(ruta);
 						if(direct.exists()) {
@@ -358,7 +365,25 @@ public class registro_vehiculo extends JPanel {
 				sh.okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						if(va.vCodigo(sh.inCode.getText())) {
-							i=0;
+							lg.res = lg.cn.getQuery("SELECT * FROM vehiculo WHERE codigo = '" + sh.inCode.getText() + "'");
+
+							try {
+								lg.res.next();
+								in_marca.setText(lg.res.getString("marca"));
+								in_codigo.setText(lg.res.getString("codigo"));
+								in_precio.setText(String.valueOf(lg.res.getDouble("precio")));
+								in_anio.setText(String.valueOf(lg.res.getInt("anio")));
+								in_color.setText(lg.res.getString("color"));
+								in_kilome.setText(String.valueOf(lg.res.getInt("kilometraje")) );
+								in_modelo.setText(lg.res.getString("modelo"));
+								in_placa.setText(lg.res.getString("placa"));
+								comboBox_1.setSelectedIndex(1);
+							} catch (SQLException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
+
+							/*i=0;
 							for(carro a:vo.listC) {
 								if(a.getCodigo().equals(sh.inCode.getText())) {
 									ind=i;
@@ -374,9 +399,16 @@ public class registro_vehiculo extends JPanel {
 							in_kilome.setText(String.valueOf(vo.listC.get(ind).kilometraje));
 							in_modelo.setText(vo.listC.get(ind).getModelo());
 							in_placa.setText(vo.listC.get(ind).placa);
-							comboBox_1.setSelectedIndex(1);
+							comboBox_1.setSelectedIndex(1);*/
+
+
 							edit=true;
-							name=vo.listC.get(ind).getCodigo();
+							try {
+								name=lg.res.getString("codigo");
+							} catch (SQLException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
 							sh.setVisible(false);
 						}
 					}
@@ -399,18 +431,43 @@ public class registro_vehiculo extends JPanel {
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						boolean encontrado = false;
+						String co="";
 						// TODO Auto-generated method stub
 						if(va.vCodigo(a.inCode.getText())) {
 							i=0;
-							for (carro b : vo.listC) {
+							/*for (carro b : vo.listC) {
 								if(b.getCodigo().equals(a.inCode.getText())) {
 									ind = i;
 									encontrado = true;
 								}
 								i++;
+							}*/
+
+							lg.res = lg.cn.getQuery("SELECT codigo FROM vehiculo");
+
+							try {
+								while(lg.res.next()) {
+									if(a.inCode.getText().equals(lg.res.getString("codigo"))) {
+										encontrado=true;
+										co = lg.res.getString("codigo");
+
+									}
+								}
+							} catch (SQLException e2) {
+								// TODO Auto-generated catch block
+								e2.printStackTrace();
+								System.out.println("problemas");
+
 							}
+
 							try {
 								if(encontrado) {
+
+									if(lg.cn.setQuery("DELETE FROM vehiculo WHERE codigo = '" + co + "'")) {
+										System.out.println("eliminado");
+									}else {
+										System.out.println("no eliminado");
+									}
 
 									del(Ventana_opciones.pathHome + "SAJACAR/catalogo/" + vo.listC.get(ind).getCodigo()) ;
 									File a = new File(Ventana_opciones.pathHome + "SAJACAR/catalogo/" + vo.listC.get(ind).getCodigo());
@@ -441,7 +498,7 @@ public class registro_vehiculo extends JPanel {
 
 		JLabel lblOpciones = new JLabel("OPCIONES:");
 		lblOpciones.setFont(new Font("Century Gothic", Font.BOLD | Font.ITALIC, 19));
-		lblOpciones.setBounds(10, 670, 189, 27);
+		lblOpciones.setBounds(10, 633, 189, 27);
 		add(lblOpciones);
 
 	}
@@ -510,6 +567,16 @@ public class registro_vehiculo extends JPanel {
 				} 
 			} 
 		} 
+	}
+
+	public String seleccion() {
+		if(btn_TNuevo.isSelected()) {
+			return "Nuevo";
+		}else if(rdbtnUsado.isSelected()) {
+			return "Usado";
+		}else {
+			return "Indefinido";
+		}
 	}
 	public void ventans(String text) {
 		JOptionPane.showMessageDialog(this, text);
