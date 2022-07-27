@@ -1,0 +1,6 @@
+ip:localhost;
+port:3306;
+name:concesionaria;
+user:root;
+psw: ;
+driver:com.mysql.cj.jdbc.Driver

@@ -32,6 +32,7 @@ import javax.swing.border.TitledBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import auto.carro;
+import validaciones.logica;
 import validaciones.validar;
 
 import javax.swing.border.EtchedBorder;
@@ -62,8 +63,10 @@ public class registro_vehiculo extends JPanel {
 	public JFileChooser ventana = new JFileChooser("");
 	public FileNameExtensionFilter filtro = new FileNameExtensionFilter("JPG", "jpg");
 	public JSpinner in_desc = new JSpinner();
-	private Ventana_opciones a = new Ventana_opciones();
+	//private Ventana_opciones a = new Ventana_opciones();
 	private int i=0,ind=0;
+	private logica lg = new logica();
+	
 	/**
 	 * Create the panel.
 	 */
@@ -300,6 +303,21 @@ public class registro_vehiculo extends JPanel {
 								496,
 								194);
 						vo.listC.add(c);
+						if(lg.createRegister(in_codigo.getText(),
+								in_marca.getText(),
+								in_modelo.getText(),
+								in_color.getText(),
+								in_placa.getText(),
+								(String)comboBox.getSelectedItem(),
+								(String)comboBox_1.getSelectedItem(),
+								Long.parseLong(in_kilome.getText()),
+								Integer.parseInt(in_anio.getText()),
+								Double.parseDouble(in_precio.getText()))) {
+							System.out.println("creado");
+						}else {
+							System.out.println("no creado");
+						}
+						
 						String ruta = Ventana_opciones.pathHome + "SAJACAR/catalogo";
 						File direct=new File(ruta);
 						if(direct.exists()) {

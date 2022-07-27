@@ -11,6 +11,9 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.border.MatteBorder;
+
+import validaciones.logica;
+
 import java.awt.Color;
 import javax.swing.JPasswordField;
 import javax.swing.SwingConstants;
@@ -30,6 +33,7 @@ public class ventana_registrar extends JPanel {
 	private JTextField in_usuario;
 	private JPasswordField in_password;
 	public boolean abierto=true;
+	private logica lg = new logica();
 	/**
 	 * Create the panel.
 	 */
@@ -102,7 +106,7 @@ public class ventana_registrar extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				registro_vehiculo v = new registro_vehiculo(vt);
 
-				if(ingreso(in_usuario.getText(), in_password.getText())) {
+				if(lg.validarContra(in_usuario.getText(), in_password.getText())) {
 					JFrame a = new JFrame();
 					a.setBounds(50, 50, 800, 900);
 					a.getContentPane().add(v);
@@ -136,34 +140,7 @@ public class ventana_registrar extends JPanel {
 		panel.add(lblNewLabel_2_1);
 
 	}
-	@SuppressWarnings("resource")
-	public boolean ingreso(String user, String pass) {
-		String b="";
-		BufferedReader br;
-		try {
-			br = new BufferedReader (new FileReader (Ventana_opciones.pathHome + "SAJACAR/datos.txt"));
-			try {
-				do {
-					b=br.readLine();
 
-					String[] s1 = b.split(";");
-					if(pass.equals(s1[1])&&user.equals(s1[0])) {
-						return true;
-					}
-					//System.out.println(s1[0] + " " + s1[1]);
-					b=br.readLine();
-				}while(b != null);
-				return false;
-
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-			}
-		} catch (FileNotFoundException e1) {
-			// TODO Auto-generated catch 
-		}
-		return false;
-
-	}
 	public void ventans(String text) {
 		JOptionPane.showMessageDialog(this, text);
 	}
