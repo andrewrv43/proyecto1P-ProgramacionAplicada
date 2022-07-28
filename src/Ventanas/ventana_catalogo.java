@@ -189,7 +189,7 @@ public class ventana_catalogo extends JPanel {
 		JButton btn_añadirimg = new JButton("+More images");
 		btn_añadirimg.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				imagenesCarrusel ca = new imagenesCarrusel(vt.listC.get(cont));
+				imagenesCarrusel ca = new imagenesCarrusel(list.get(cont));
 				ca.show();
 			}
 		});
@@ -211,7 +211,7 @@ public class ventana_catalogo extends JPanel {
 				out_marca.setText(list.get(cont).getMarca());
 				out_modelo.setText(list.get(cont).getModelo());
 				out_precio_venta.setText(list.get(cont).getPrecio());
-				//out_image.setIcon(list.get(cont).iniciar());
+				out_image.setIcon(list.get(cont).iniciar());
 
 			}
 		});
@@ -232,7 +232,7 @@ public class ventana_catalogo extends JPanel {
 				out_marca.setText(list.get(cont).getMarca());
 				out_modelo.setText(list.get(cont).getModelo());
 				out_precio_venta.setText(list.get(cont).getPrecio());
-				//out_image.setIcon(list.get(cont).iniciar());
+				out_image.setIcon(list.get(cont).iniciar());
 			}
 		});
 		btn_siguiente.setBounds(647, 229, 69, 71);
@@ -245,7 +245,7 @@ public class ventana_catalogo extends JPanel {
 		out_marca.setText(list.get(cont).getMarca());
 		out_modelo.setText(list.get(cont).getModelo());
 		out_precio_venta.setText(list.get(cont).getPrecio());
-		//out_image.setIcon(list.get(cont).iniciar()); //CARGAR IMAGEN PRINCIPAL
+		out_image.setIcon(list.get(cont).iniciar()); //CARGAR IMAGEN PRINCIPAL
 
 	}
 	public void cargar() {
@@ -263,8 +263,8 @@ public class ventana_catalogo extends JPanel {
 									lg.res.getInt("anio"),
 									lg.res.getInt("descuento"),
 									lg.res.getDouble("precio"),
-									50,
-									50));
+									496,
+									194));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

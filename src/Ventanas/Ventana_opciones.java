@@ -46,6 +46,8 @@ public class Ventana_opciones extends JPanel {
 	public ArrayList<carro> listC = new ArrayList<carro>();
 	public static String pathHome = System.getProperty("user.home") + "\\Documents\\";
 	public JButton btnNewButton = new JButton("REGISTRAR");
+	private ventas v = new ventas();
+
 	public Ventana_opciones() {
 		setBackground(Color.WHITE);
 		setLayout(null);
@@ -116,8 +118,8 @@ public class Ventana_opciones extends JPanel {
 		JButton btnComprar = new JButton("COMPRAR");
 		btnComprar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				proximamente px = new proximamente();
-				px.show();
+				ventanaComprar vc = new ventanaComprar(v);
+				vc.show();
 			}
 		});
 		btnComprar.setFont(new Font("Century Gothic", Font.BOLD | Font.ITALIC, 20));
@@ -127,8 +129,7 @@ public class Ventana_opciones extends JPanel {
 		JButton btnVender = new JButton("VENDER");
 		btnVender.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				proximamente pt = new proximamente();
-				pt.show();
+				v.show();
 			}
 		});
 		btnVender.setFont(new Font("Century Gothic", Font.BOLD | Font.ITALIC, 20));

@@ -18,14 +18,14 @@ import javax.swing.JRadioButton;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class ventanaComprar extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	public JTextField inMarca;
 	public JTextField inModelo;
-	public JButton cancelButton = new JButton("Cancel");
-	public JButton okButton = new JButton("OK");
 	public JLabel outTotal = new JLabel("00,00");
 	public JRadioButton rdbtnCarroMalo = new JRadioButton("MALO");
 	public JRadioButton rdbtnCarroRegular = new JRadioButton("REGULAR");
@@ -46,12 +46,13 @@ public class ventanaComprar extends JDialog {
 	public JSpinner inNumDue = new JSpinner();
 	public JSpinner inKilometraje = new JSpinner();
 
+	private static ventas cv;
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
 		try {
-			ventanaComprar dialog = new ventanaComprar();
+			ventanaComprar dialog = new ventanaComprar(cv);
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -62,9 +63,9 @@ public class ventanaComprar extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public ventanaComprar() {
+	public ventanaComprar(ventas v) {
 		Hilo_ValorCompra comp;
-		
+		cv = v;
 		setBounds(100, 100, 497, 584);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -122,7 +123,7 @@ public class ventanaComprar extends JDialog {
 		lblNewLabel_1_1_3.setBounds(239, 97, 148, 22);
 		panel.add(lblNewLabel_1_1_3);
 
-		inNumDue.setBounds(410, 99, 35, 20);
+		inNumDue.setBounds(405, 98, 35, 20);
 		panel.add(inNumDue);
 		
 		JPanel panel_1 = new JPanel();
@@ -304,22 +305,19 @@ public class ventanaComprar extends JDialog {
 		outTotal.setFont(new Font("Tahoma", Font.BOLD, 15));
 		outTotal.setBounds(187, 419, 267, 87);
 		contentPanel.add(outTotal);
-		{
-			JPanel buttonPane = new JPanel();
-			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
-			getContentPane().add(buttonPane, BorderLayout.SOUTH);
-			{
-				okButton.setActionCommand("OK");
-				buttonPane.add(okButton);
-				getRootPane().setDefaultButton(okButton);
+		
+		JButton btnComprar = new JButton("COMPRAR");
+		btnComprar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cv.inVEntrada.setText(outTotal.getText());
+				cv.show();
 			}
-			{
-				
-				cancelButton.setActionCommand("Cancel");
-				buttonPane.add(cancelButton);
-			}
-		}
+		});
+		btnComprar.setBounds(167, 482, 89, 23);
+		contentPanel.add(btnComprar);
 		comp=new Hilo_ValorCompra(this);
 		comp.start();
+		
+		cv.inVEntrada.setEditable(false);
 	}
 }
