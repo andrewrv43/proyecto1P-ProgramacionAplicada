@@ -1,5 +1,7 @@
 package controlador;
 
+import java.text.DecimalFormat;
+
 import Ventanas.ventanaComprar;
 
 public class Hilo_ValorCompra extends Thread{
@@ -85,8 +87,9 @@ public class Hilo_ValorCompra extends Thread{
 						v=(n*10)/100;
 						n-=v;
 					}
+					DecimalFormat df=new DecimalFormat("#.00");
 					
-					ven.outTotal.setText(String.valueOf(n));
+					ven.outTotal.setText(df.format(n));
 				}else {
 					ven.outTotal.setText("No se realiza el calculo");
 					

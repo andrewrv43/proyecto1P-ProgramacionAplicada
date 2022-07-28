@@ -313,7 +313,7 @@ public class ventanaComprar extends JDialog {
 				cv.show();
 			}
 		});
-		btnComprar.setBounds(167, 482, 89, 23);
+		btnComprar.setBounds(169, 507, 112, 30);
 		contentPanel.add(btnComprar);
 		comp=new Hilo_ValorCompra(this);
 		comp.start();

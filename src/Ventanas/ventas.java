@@ -7,16 +7,25 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import controlador.SumaVentas;
 import validaciones.logica;
 
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JPasswordField;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.awt.event.ActionEvent;
+import javax.swing.JRadioButton;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.awt.event.KeyAdapter;
 
 public class ventas extends JFrame {
 
@@ -24,14 +33,17 @@ public class ventas extends JFrame {
 	private JTextField inNombre;
 	private JTextField inCedula;
 	public JTextField inVEntrada;
-	private JTextField inAdicional;
+	public JTextField inAdicional;
 	private JTextField inCodigo;
-	private JTextField valorV;
-	private JTextField inSeguro;
-	private JTextField inGPS;
-	private JTextField inAccesorios;
-	private JTextField inValorVenta;
+	public JTextField valorV;
+	public JTextField inValorVenta;
 	private logica lg = new logica();
+	private ResultSet res;
+
+	public JRadioButton rdbtnAcSi = new JRadioButton("AGREGAR");
+	public JRadioButton rdbtnGPSSi = new JRadioButton("AGREGAR");
+	public JRadioButton rdbtnSeguroSi = new JRadioButton("AGREGAR");
+	private SumaVentas sum;
 	/**
 	 * Launch the application.
 	 */
@@ -58,6 +70,12 @@ public class ventas extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
+		JButton btnBuscar = new JButton("");
+
+		btnBuscar.setBounds(510, 304, 29, 24);
+		contentPane.add(btnBuscar);
+		btnBuscar.setIcon(new ImageIcon(ventana_catalogo.class.getResource("/Resources/redimensionado32.png")));
 
 		JLabel lblSajacar = new JLabel("SAJACAR");
 		lblSajacar.setHorizontalAlignment(SwingConstants.CENTER);
@@ -125,10 +143,10 @@ public class ventas extends JFrame {
 		lblAccesorios.setBounds(22, 479, 171, 37);
 		contentPane.add(lblAccesorios);
 
-		JLabel lblValorDeVenta_1 = new JLabel("Valor de venta:");
+		JLabel lblValorDeVenta_1 = new JLabel("Valor de venta Final:");
 		lblValorDeVenta_1.setHorizontalAlignment(SwingConstants.LEFT);
 		lblValorDeVenta_1.setFont(new Font("Century Gothic", Font.BOLD | Font.ITALIC, 21));
-		lblValorDeVenta_1.setBounds(10, 543, 171, 37);
+		lblValorDeVenta_1.setBounds(10, 543, 276, 37);
 		contentPane.add(lblValorDeVenta_1);
 
 		JButton btnComprar = new JButton("COMPRAR");
@@ -136,13 +154,13 @@ public class ventas extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if(lg.cn.setQuery("INSERT INTO cliente (cedula, nombre, codigoVehiculo) VALUES (" + inCedula.getText() + ", '" + inNombre.getText() + "', '" + inCodigo.getText() + "')") && lg.cn.setQuery("DELETE FROM vehiculo where codigo = '" + inCodigo.getText() + "'")) {
 					System.out.println("Cliente registro ---> auto vendido");
-					inAccesorios.setText("");
+				
 					inAdicional.setText("");
 					inCedula.setText("");
 					inCodigo.setText("");
-					inGPS.setText("");
+					
 					inNombre.setText("");
-					inSeguro.setText("");
+					
 					inValorVenta.setText("");
 					inVEntrada.setText("");
 				}else {
@@ -160,54 +178,88 @@ public class ventas extends JFrame {
 		inNombre.setColumns(10);
 
 		inCedula = new JTextField();
+		inCedula.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				digitos(e);
+			}
+		});
 		inCedula.setColumns(10);
 		inCedula.setBounds(322, 161, 194, 20);
 		contentPane.add(inCedula);
 
 		inVEntrada = new JTextField();
+		inVEntrada.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				digitos(e);
+			}
+		});
 		inVEntrada.setColumns(10);
 		inVEntrada.setBounds(322, 195, 194, 20);
 		contentPane.add(inVEntrada);
 
 		inAdicional = new JTextField();
+		inAdicional.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				digitos(e);
+			}
+		});
 		inAdicional.setColumns(10);
 		inAdicional.setBounds(322, 234, 194, 20);
 		contentPane.add(inAdicional);
 
 		inCodigo = new JTextField();
 		inCodigo.setColumns(10);
-		inCodigo.setBounds(322, 304, 194, 20);
+		inCodigo.setBounds(322, 304, 178, 20);
 		contentPane.add(inCodigo);
 
 		valorV = new JTextField();
+		valorV.setEditable(false);
 		valorV.setColumns(10);
 		valorV.setBounds(322, 365, 194, 20);
 		contentPane.add(valorV);
 
-		inSeguro = new JTextField();
-		inSeguro.setText("0");
-		inSeguro.setColumns(10);
-		inSeguro.setBounds(322, 430, 194, 20);
-		contentPane.add(inSeguro);
-
-		inGPS = new JTextField();
-		inGPS.setText("0");
-		inGPS.setColumns(10);
-		inGPS.setBounds(322, 462, 194, 20);
-		contentPane.add(inGPS);
-
-		inAccesorios = new JTextField();
-		inAccesorios.setText("0");
-		inAccesorios.setColumns(10);
-		inAccesorios.setBounds(322, 492, 194, 20);
-		contentPane.add(inAccesorios);
-
 		inValorVenta = new JTextField();
+		inValorVenta.setEditable(false);
 		inValorVenta.setColumns(10);
 		inValorVenta.setBounds(322, 556, 194, 20);
 		contentPane.add(inValorVenta);
 
+		rdbtnSeguroSi.setBounds(380, 430, 103, 21);
+		contentPane.add(rdbtnSeguroSi);
+
+		rdbtnGPSSi.setBounds(380, 455, 103, 21);
+		contentPane.add(rdbtnGPSSi);
+		
+		
+		rdbtnAcSi.setBounds(380, 479, 103, 21);
+		contentPane.add(rdbtnAcSi);
+
 		//inValorVenta.setText(""+ valorV.getText() + inSeguro.getText() + inGPS.getText() + inAccesorios.getText());
 
+		btnBuscar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				try {
+					res=lg.cn.getQuery("SELECT precio FROM vehiculo WHERE codigo='"+inCodigo.getText()+"'");
+					if(res.next()) {
+						valorV.setText(String.valueOf(res.getDouble("precio")));
+					}
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					System.out.println("ERROR EN LA CONSULTA: "+e1);
+				}
+				
+			}
+		});
+		sum=new SumaVentas(this);
+		sum.start();
+	}
+	public void digitos(KeyEvent evt) {
+		char car = evt.getKeyChar();
+		if((car<'0' || car>'9') && (car<',' || car>'.')) evt.consume();
 	}
 }
