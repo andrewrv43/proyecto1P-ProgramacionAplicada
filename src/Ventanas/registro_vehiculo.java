@@ -319,7 +319,8 @@ public class registro_vehiculo extends JPanel {
 								Long.parseLong(in_kilome.getText()),
 								Integer.parseInt(in_anio.getText()),
 								Double.parseDouble(in_precio.getText()),
-								seleccion())) {
+								seleccion(),
+								ind)) {
 							System.out.println("creado");
 						}else {
 							System.out.println("no creado");
@@ -383,23 +384,7 @@ public class registro_vehiculo extends JPanel {
 								e1.printStackTrace();
 							}
 
-							/*i=0;
-							for(carro a:vo.listC) {
-								if(a.getCodigo().equals(sh.inCode.getText())) {
-									ind=i;
-								}
-								i++;
-							}
-
-							in_marca.setText(vo.listC.get(ind).getMarca());
-							in_codigo.setText(vo.listC.get(ind).getCodigo());
-							in_precio.setText( vo.listC.get(ind).getPrecio());
-							in_anio.setText(String.valueOf(vo.listC.get(ind).year));
-							in_color.setText(vo.listC.get(ind).color);
-							in_kilome.setText(String.valueOf(vo.listC.get(ind).kilometraje));
-							in_modelo.setText(vo.listC.get(ind).getModelo());
-							in_placa.setText(vo.listC.get(ind).placa);
-							comboBox_1.setSelectedIndex(1);*/
+							
 
 
 							edit=true;
@@ -435,13 +420,7 @@ public class registro_vehiculo extends JPanel {
 						// TODO Auto-generated method stub
 						if(va.vCodigo(a.inCode.getText())) {
 							i=0;
-							/*for (carro b : vo.listC) {
-								if(b.getCodigo().equals(a.inCode.getText())) {
-									ind = i;
-									encontrado = true;
-								}
-								i++;
-							}*/
+							
 
 							lg.res = lg.cn.getQuery("SELECT codigo FROM vehiculo");
 
@@ -450,7 +429,7 @@ public class registro_vehiculo extends JPanel {
 									if(a.inCode.getText().equals(lg.res.getString("codigo"))) {
 										encontrado=true;
 										co = lg.res.getString("codigo");
-
+										break;
 									}
 								}
 							} catch (SQLException e2) {

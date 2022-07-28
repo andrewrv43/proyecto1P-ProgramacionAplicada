@@ -18,10 +18,12 @@ import javax.swing.JSplitPane;
 import javax.swing.border.MatteBorder;
 
 import auto.carro;
+import validaciones.logica;
 import validaciones.validar;
 
 import java.awt.Color;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
@@ -38,6 +40,8 @@ public class ventana_catalogo extends JPanel {
 	public JLabel out_marca = new JLabel("---------");
 	public JLabel out_precio_venta = new JLabel("$ 0.00");
 	public JLabel out_image = new JLabel("");
+	private logica lg = new logica();
+	private ArrayList<carro> list = new ArrayList<carro>();
 	public ventana_catalogo(Ventana_opciones vt) {
 		setBackground(Color.WHITE);
 
@@ -82,6 +86,30 @@ public class ventana_catalogo extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				validar v=new validar();
 				boolean enc=false;
+				lg.res = lg.cn.getQuery("SELECT * FROM vehiculo WHERE codigo = '" + in_abuscar.getText()+"'");
+				
+				if(v.vCodigo(in_abuscar.getText())) {
+					try {
+						while(lg.res.next()) {
+							if(in_abuscar.getText().equals(lg.res.getString("codigo"))){
+								out_codigo.setText(lg.res.getString("codigo"));
+								out_marca.setText(lg.res.getString("marca"));
+								out_modelo.setText(lg.res.getString("modelo"));
+								out_precio_venta.setText(String.valueOf(lg.res.getDouble("precio")));
+								//out_image.setIcon(a.iniciar());
+								enc=true;
+							}
+						}
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+				else {
+					ventans("FORMATO DE CODIGO NO CORRECTO");
+				}
+				
+				/*
 				if(v.vCodigo(in_abuscar.getText())) {
 					for(carro a:vt.listC) {
 						if(in_abuscar.getText().equals(a.getCodigo())){
@@ -96,10 +124,11 @@ public class ventana_catalogo extends JPanel {
 				}
 				else {
 					ventans("FORMATO DE CODIGO NO CORRECTO");
-				}
+				}*/
 				if(!enc) {
 					ventans("NO SE ENCONTRO LA BUSQUEDA");
 				}
+				
 			}
 		});
 		btn_otrosBuscador.setFont(new Font("Tahoma", Font.PLAIN, 17));
@@ -172,15 +201,17 @@ public class ventana_catalogo extends JPanel {
 		btn_atras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(cont <= 0){
-					cont = vt.listC.size()-1;
+					cont = list.size()-1;
 				}else {
 					cont --;
 				}
-				out_codigo.setText(vt.listC.get(cont).getCodigo());
-				out_marca.setText(vt.listC.get(cont).getMarca());
-				out_modelo.setText(vt.listC.get(cont).getModelo());
-				out_precio_venta.setText(vt.listC.get(cont).getPrecio());
-				out_image.setIcon(vt.listC.get(cont).iniciar());
+				System.out.println("Baja: " + cont);
+
+				out_codigo.setText(list.get(cont).getCodigo());
+				out_marca.setText(list.get(cont).getMarca());
+				out_modelo.setText(list.get(cont).getModelo());
+				out_precio_venta.setText(list.get(cont).getPrecio());
+				//out_image.setIcon(list.get(cont).iniciar());
 
 			}
 		});
@@ -191,28 +222,55 @@ public class ventana_catalogo extends JPanel {
 		JButton btn_siguiente = new JButton(">>");
 		btn_siguiente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(cont >= vt.listC.size()-1){
+				if(cont >= list.size()-1){
 					cont = 0;
 				}else {
 					cont ++;
 				}
-				out_codigo.setText(vt.listC.get(cont).getCodigo());
-				out_marca.setText(vt.listC.get(cont).getMarca());
-				out_modelo.setText(vt.listC.get(cont).getModelo());
-				out_precio_venta.setText(vt.listC.get(cont).getPrecio());
-				out_image.setIcon(vt.listC.get(cont).iniciar());
+				System.out.println("Sube: " + cont);
+				out_codigo.setText(list.get(cont).getCodigo());
+				out_marca.setText(list.get(cont).getMarca());
+				out_modelo.setText(list.get(cont).getModelo());
+				out_precio_venta.setText(list.get(cont).getPrecio());
+				//out_image.setIcon(list.get(cont).iniciar());
 			}
 		});
 		btn_siguiente.setBounds(647, 229, 69, 71);
 		panel.add(btn_siguiente);
 		btn_siguiente.setFont(new Font("Century Gothic", Font.BOLD, 30));
 
-		out_codigo.setText(vt.listC.get(cont).getCodigo());
-		out_marca.setText(vt.listC.get(cont).getMarca());
-		out_modelo.setText(vt.listC.get(cont).getModelo());
-		out_precio_venta.setText(vt.listC.get(cont).getPrecio());
-		out_image.setIcon(vt.listC.get(cont).iniciar());
+		//MUESTRA EL PRIMER VEHICULO
+		cargar();
+		out_codigo.setText(list.get(cont).getCodigo());
+		out_marca.setText(list.get(cont).getMarca());
+		out_modelo.setText(list.get(cont).getModelo());
+		out_precio_venta.setText(list.get(cont).getPrecio());
+		//out_image.setIcon(list.get(cont).iniciar()); //CARGAR IMAGEN PRINCIPAL
 
+	}
+	public void cargar() {
+		lg.res = lg.cn.getQuery("SELECT * FROM vehiculo");
+		try {
+			while(lg.res.next()) {
+				list.add(new carro(lg.res.getString("codigo"),
+									lg.res.getString("marca"),
+									lg.res.getString("modelo"),
+									lg.res.getString("color"),
+									lg.res.getString("placa"),
+									lg.res.getString("tapiceria"),
+									lg.res.getString("caja_cambios"),
+									Long.parseLong(String.valueOf(lg.res.getInt("kilometraje"))),
+									lg.res.getInt("anio"),
+									lg.res.getInt("descuento"),
+									lg.res.getDouble("precio"),
+									50,
+									50));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 	public void ventans(String text) {
 		JOptionPane.showMessageDialog(this, text);

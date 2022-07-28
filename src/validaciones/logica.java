@@ -27,8 +27,8 @@ public class logica {
 	
 	//CRUD - BASE DE DATOS
 	
-	public boolean createRegister(String cod, String marca, String mod, String col, String plc, String tapiceria, String caja, Long km, int anio, double price, String tipo) {
-		String sentencia = "INSERT INTO vehiculo(codigo, marca, modelo, anio, kilometraje, precio, color, placa, tapiceria, caja_cambios, tipo) VALUES('" + cod + "', '" + marca + "', '" + mod + "', " + anio + ", " + km + ", " + price + ", '" + col + "', '" + plc + "', '" + tapiceria + "', '" + caja + "', '" + tipo + "')";
+	public boolean createRegister(String cod, String marca, String mod, String col, String plc, String tapiceria, String caja, Long km, int anio, double price, String tipo, int descuento) {
+		String sentencia = "INSERT INTO vehiculo(codigo, marca, modelo, anio, kilometraje, precio, color, placa, tapiceria, caja_cambios, tipo, descuento) VALUES('" + cod + "', '" + marca + "', '" + mod + "', " + anio + ", " + km + ", " + price + ", '" + col + "', '" + plc + "', '" + tapiceria + "', '" + caja + "', '" + tipo + "', " + descuento + ")";
 		return cn.setQuery(sentencia);
 	}
 }
